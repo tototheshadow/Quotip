@@ -2,9 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Montserrat+Alternates&family=Dongle:wght@300&family=Indie+Flower&display=swap');
 
 
-body{
+/* body{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
+    
+} */
+
+body {font-family: Arial, Helvetica, sans-serif;}
 
 header{
     background-color: crimson;  
@@ -63,6 +66,30 @@ footer {
 
     
  }
+
+ button {
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  button:hover {
+    opacity: 0.8;
+  }
+
+  input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  }
+ 
 
 /* COLOR -------------------------------------------------------------------------------*/
 
@@ -191,7 +218,7 @@ footer {
     background-color: black; width: 100%; height: 3px;
 }
 
-.button-login{
+/* .button-login{
 
 }
 
@@ -211,7 +238,7 @@ footer {
 .button-purple:active{
     background-color: #ff0088;
     font-weight: bold;       
-}
+} */
 
 .ul-no-style{
     list-style : none;
@@ -232,6 +259,10 @@ footer {
     padding: 20px;
 }
 
+.article {
+    width: 75%;
+}
+
 
 #login {
     float: right;
@@ -240,13 +271,6 @@ footer {
     text-align: right;
 }
 
-#login-username{
-
-}
-
-#password-username{
-
-}
 
 #nav-top-right li{
     font-weight: bold;

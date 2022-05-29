@@ -9,7 +9,7 @@
 
     <link rel="icon" href="img/quotip_logo.png" type="image/x-icon">
     <link rel="stylesheet" href="style/main-style.css">
-    <link rel="stylesheet" href="style/login-style.css">
+    <!-- <link rel="stylesheet" href="style/login-style.css"> -->
 </head>
 <body>
     
@@ -25,7 +25,7 @@
         
         <nav class="width-100" id="nav-top-right">
             <ul style="display: flex; align-items: flex-end; justify-content: flex-end;">
-                <li><a href="login.html">Login</a></li>
+                <li><a href="" onclick="document.getElementById('login-modal').style.display='block'">Login</a></li>
                 <li><a href="signup.html">Sign-Up</a></li>                      
             </ul> 
         </nav>        
@@ -34,16 +34,11 @@
     
     <main class="top-margin-30">    
         <div id="main-content" class="flex-container-column align-items-center ">
-            <article id="about-us" class="flex-container-column justify-content-center align-items-center">
-
-                <div class="line-object top-margin-10p"></div> 
+            <article class="flex-container-column justify-content-center align-items-center article">
+                
 
                 <form action="" class="top-margin-30 bottom-margin-30 login-signup flex-container-column align-items-center justify-content-center">
-                    
-
-                    <!-- <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
-                     -->
-                             
+                                                
                     <h2 class="top-margin-15">LOGIN</h2>
                     <input id="login-username" class="top-margin-15" type="text" name="text-username" placeholder="username">
                     <input id="signup-username" class="top-margin-15 bottom-margin-15" type="password" name="text-password" placeholder="password">
@@ -51,7 +46,7 @@
                     <a href="signup.html">Don't have account? Make new user.</a>                 
                 </form>
 
-                <div class="line-object"></div>   
+                
                                 
             </article>
             <article id="article-2" class="top-margin-30">
@@ -73,7 +68,7 @@
 
 <script>
     // Get the modal
-    var modal = document.getElementById('id01');
+    var modal = document.getElementById('login-modal');
     
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
