@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Quotip : Quotes Everyday</title>
+
+    <link rel="icon" href="img/quotip_logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="style/main-style.css">
+</head>
+<body>
+    
+    <header class="flex-container-row">
+        <span class="left-margin-15"><img src="img/quotip_logo.png" alt=""></span>
+        <h1 class="color-white"><a href="index.html">Quotip</a></h1>
+        <nav class="width-100" id="nav-top-left">
+            <ul>
+                <li><a href="index.html">About Us</a></li>
+                <li><a href="quotes.html">Get Quotes</a></li>    
+            </ul>          
+        </nav>
+        
+        <nav class="width-100" id="nav-top-right">
+            <ul style="display: flex; align-items: flex-end; justify-content: flex-end;">
+                <li><a href="login.html">Login</a></li>
+                <li><a href="signup.html">Sign-Up</a></li>                
+            </ul> 
+        </nav>        
+       
+    </header>
+    
+    <main class="top-margin-30">    
+        <div id="main-content" class="flex-container-column align-items-center ">
+            <article id="quotes-display" class="flex-container-column justify-content-center ">
+
+                <div class="line-object bottom-margin-15"></div> 
+                <span class="tanda-petik top-margin-30">"</span>
+
+                <div class="flex-container-row justify-content-center">
+                    
+                    <div class="flex-container-column justify-content-center align-items-center">
+                        <div class="left-padding-15 right-padding-15" id="about-us-text">                            
+                            <div id="text-quotes" class="text-align-center">The way I see it, if you want the rainbow, you gotta put up with the rain.</div>
+                        </div>
+                        
+                    </div>
+                   
+    
+                    
+                </div>
+                <span class="flex-container-column justify-content-end align-items-end tanda-petik">"</span>
+                <div class="line-object top-margin-15"></div>   
+                                
+            </article>
+
+            <article id="about-us" class="flex-container-column justify-content-center ">
+                <textarea name="text-story" id="text-story" cols="30" rows="5"></textarea>
+                <button class="button-purple top-margin-15" onclick="pasteStory()">Tell Your Story</button>                                
+            </article>
+
+            <article id="article-2" class="top-margin-30">
+
+            </article>
+
+        </div> 
+        
+        
+    </main>
+
+        
+
+    <footer>
+        <p class="no-top-margin no-bottom-margin">Copyright © 2022 Quotip. All rights reserved</p>        
+    </footer>
+
+
+
+</body>
+<script src="js/jquery-3.5.1.min.js"></script>
+<script>
+
+    function pasteStory(){
+        var story = document.getElementById('text-story').value;
+        document.getElementById("text-quotes").innerHTML = story;
+    }
+
+  
+        
+
+    
+</script>
+</html>

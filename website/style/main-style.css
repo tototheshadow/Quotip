@@ -1,0 +1,305 @@
+@import url('https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Comic+Neue:wght@300&family=Nanum+Pen+Script&family=Work+Sans:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Montserrat+Alternates&family=Dongle:wght@300&family=Indie+Flower&display=swap');
+
+
+body{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+header{
+    background-color: crimson;  
+    align-items: center;
+    position: sticky;
+    top:0;  
+    height: 65px;   
+
+}
+
+header img{
+    width: 70%;
+    height: 70%;
+}
+
+header a{
+    text-decoration: none;
+    color: white;
+}
+
+nav ul{
+    list-style: none;
+    align-items: center;
+    font-size: 20px;
+}
+
+nav{
+    float: left;
+}
+
+
+nav ul li{
+    display: inline;
+    margin-right: 2vw;
+}
+
+nav a:hover{
+    font-weight: bold;
+    color: yellow;
+}
+
+body{
+    margin: 0;
+}
+
+footer {
+    padding: 20px;
+    font-size: 20px;
+    width: 100%;
+    font-weight: bold;
+    color: white;
+    background-color: crimson;
+    text-align: center;
+   
+  
+
+    
+ }
+
+/* COLOR -------------------------------------------------------------------------------*/
+
+.color-white{
+    color: white;
+    
+}
+
+/*--------------------------------------------------------------------------------------*/
+
+
+/* MARGIN + PADDING + WIDTH ------------------------------------------------------------------*/
+
+.left-margin-15{
+    margin-left: 15px;
+    
+}
+
+.right-margin-15{
+    margin-right: 15px;
+}
+
+.right-margin-25{
+    margin-right: 25px;
+}
+
+.no-top-margin{
+    margin-top: 0px;
+}
+
+.top-margin-15{
+    margin-top: 15px;    
+}
+
+.top-margin-30{
+    margin-top: 30px;
+}
+
+.top-margin-10p{
+    margin-top: 10%;
+}
+
+.bottom-margin-15{
+    margin-bottom: 15px;    
+}
+
+.bottom-margin-30{
+    margin-bottom: 30px;    
+}
+
+
+.no-bottom-margin{
+    margin-bottom: 0px;
+}
+
+.width-100{
+    width: 100%;
+}
+
+.left-padding-15{
+    padding-left: 50px;
+}
+
+.right-padding-15{
+    padding-right: 50px;
+}
+
+/*--------------------------------------------------------------------------------------*/
+
+/* Text Align  ------------------------------------------------------------------*/
+
+.text-align-left{
+    text-align: left;
+}
+
+.text-align-center{
+    text-align: center;
+}
+
+/* ------------------------------------------------------------------*/
+
+
+/* FLEX  ------------------------------------------------------------------*/
+.flex-container-column{
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-container-row{
+    display: flex;
+    flex-direction: row;    
+}
+
+.flex-grow-1{
+    flex-grow: 1;
+}
+
+.flex-grow-2{
+    flex-grow: 2;
+}
+
+.flex-grow-3{
+    flex-grow: 3;
+}
+
+
+.justify-content-center{
+    justify-content: center;
+}
+
+.justify-content-end{
+    justify-content: flex-end;
+}
+
+.align-items-center{
+    align-items: center;
+}
+
+.align-items-end{
+    align-items: end;
+}
+
+/*--------------------------------------------------------------------------------------*/
+
+.line-object{
+    background-color: black; width: 100%; height: 3px;
+}
+
+.button-login{
+
+}
+
+.button-purple {
+    
+    background-color: #f6329b; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+
+.button-purple:active{
+    background-color: #ff0088;
+    font-weight: bold;       
+}
+
+.ul-no-style{
+    list-style : none;
+}
+
+.image-fit-cover {   
+    
+    object-fit: contain;
+    object-position: center;    
+}
+
+.image-circle { display: inline-block; position: relative; overflow: hidden; border-radius: 50%; }
+
+.login-signup{
+    border: 1px solid black;
+    border-radius: 10%;
+    width: auto;
+    padding: 20px;
+}
+
+
+#login {
+    float: right;
+    font-weight: bold;
+    font-size: 30px;
+    text-align: right;
+}
+
+#login-username{
+
+}
+
+#password-username{
+
+}
+
+#nav-top-right li{
+    font-weight: bold;
+    font-size: 25px;
+
+}
+
+
+#about-us {  
+    
+    width: 75%;
+}
+
+#about-us-text{
+    text-align: left;    
+}
+
+#about-us-text p{
+    font-size: 20px;
+}
+
+#about-us-text h2{
+    font-size: 30px;
+}
+
+
+#quotes-display {  
+    
+    width: 75%;
+}
+
+#article-2{
+    background-color: rgb(255, 255, 255);
+    height: 500px;
+    width: 100%;
+}
+
+#text-story{
+    resize: vertical;
+    font-family: 'Comic Neue';
+    font-size: 35px;
+}
+
+#text-quotes{
+    font-family: "Indie Flower";
+    font-size: 3vw;
+}
+
+.tanda-petik{
+    font-family: 'BIZ UDPGothic';
+    font-size: 100px;    
+}
+
+.background-blue{
+    background-color: blue;
+}
