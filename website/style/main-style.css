@@ -200,12 +200,21 @@ footer {
     justify-content: center;
 }
 
+.justify-content-start{
+    justify-content: start;
+}
+
+
 .justify-content-end{
-    justify-content: flex-end;
+    justify-content: end;
 }
 
 .align-items-center{
     align-items: center;
+}
+
+.align-items-start{
+    align-items: start;
 }
 
 .align-items-end{
@@ -218,27 +227,6 @@ footer {
     background-color: black; width: 100%; height: 3px;
 }
 
-/* .button-login{
-
-}
-
-.button-purple {
-    
-    background-color: #f6329b; 
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-}
-
-
-.button-purple:active{
-    background-color: #ff0088;
-    font-weight: bold;       
-} */
 
 .ul-no-style{
     list-style : none;
@@ -253,8 +241,8 @@ footer {
 .image-circle { display: inline-block; position: relative; overflow: hidden; border-radius: 50%; }
 
 .login-signup{
-    border: 1px solid black;
-    border-radius: 10%;
+    
+    
     width: auto;
     padding: 20px;
 }
@@ -262,6 +250,53 @@ footer {
 .article {
     width: 75%;
 }
+
+.article-2{
+    background-color: rgb(255, 255, 255);
+    height: 500px;
+    width: 100%;
+}
+
+/* MODAL --------------------------------------------------------------------------------------*/
+
+.modal{
+    display: none;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content{
+    background-color: #fefefe;
+  margin: 10% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 50%; /* Could be more or less, depending on screen size */
+}
+
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+  }
+  
+  @-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+  }
+    
+  @keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+  }
+
+
+
+
+/*--------------------------------------------------------------------------------------*/
 
 
 #login {
