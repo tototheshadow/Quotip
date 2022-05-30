@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+sqlmodel
+pymysql
+SQLAlchemy==1.4.35
+passlib[bcrypt] #pass hash
+jinja2 #template
+aiofiles
+psycopg2
+python-dotenv #env var
