@@ -18,40 +18,39 @@
         <span class="left-margin-15"><img src="img/quotip_logo.png" alt=""></span>
         <h1 class="color-white"><a href="index.html">Quotip</a></h1>
         <nav class="width-100" id="nav-top-left">
-            <ul>
-                <li><a href="#about-us">About Us</a></li>
+            <ul id="left-nav">
+                <li><a href="index.html#about-us">About Us</a></li>
                 <li><a href="quotes.html">Get Quotes</a></li>    
             </ul>          
         </nav>
         
         <nav class="width-100" id="nav-top-right">
-            <ul style="display: flex; align-items: flex-end; justify-content: flex-end;">
-                <li><a href="" onclick="document.getElementById('modal-login').style.display='inline-block'">Login</a></li>
+            <ul id="right-nav" style="display: flex; align-items: flex-end; justify-content: flex-end;">
+                <li><a href="login.html">Login</a></li>
                 <li><a href="signup.html">Sign-Up</a></li>                      
             </ul> 
         </nav>        
        
     </header>
     
-    <main class="top-margin-30">    
+    <main class="top-margin-30">          
         <div id="main-content" class="flex-container-column align-items-center ">
-            <button id="but" class="but">Show</button>
-            <div id="modal-login" class="modal flex-container-column justify-content-center align-items-center article">      
-
-                <form action="" class="animate modal-content top-margin-30 bottom-margin-30 login-signup flex-container-column align-items-center justify-content-center">
+            <!-- <button id="but" class="but">Show</button> -->
+            <!-- <div id="modal-login" class="modal flex-container-column justify-content-center align-items-center article">       -->
+                <div action="" class="modal-content bottom-margin-30 login-signup flex-container-column align-items-center justify-content-center">
                                                 
                     <h2 class="top-margin-15">LOGIN</h2>
                     <span class="width-100"><b>Username</b></span>                  
-                    <input id="login-username" class="top-margin-15" type="text" name="text-username" placeholder="username">
+                    <input id="text-username" class="top-margin-15" type="text" name="text-username" placeholder="Username">
                     <span class="width-100"><b>Password</b></span>  
-                    <input id="signup-username" class="top-margin-15 bottom-margin-15" type="password" name="text-password" placeholder="password">
+                    <input id="text-password" class="top-margin-15 bottom-margin-15" type="password" name="text-password" placeholder="Password">
                     
 
-                    <button class="top-margin-15 bottom-margin-15">LOGIN</button>   
+                    <button class="top-margin-15 bottom-margin-15" id="button-login">LOGIN</button>   
                     <a href="signup.html">Don't have account? Make new user.</a>                 
-                </form>                
+                </div>                
                                 
-            </div>
+            <!-- </div> -->
 
             <article class="article-2 top-margin-30">
 
@@ -73,47 +72,97 @@
     </footer>
 
 <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
-<script>
-    // Get the modal
-    var modal = document.getElementById('modal-login');
+<script>    
+
+    function logout(){
+        localStorage.clear();
+    }
+
+    var session_username = localStorage.getItem("username");   
+    if(session_username != "" && session_username != null)
+    {
+        var left_nav = document.getElementById("left-nav").innerHTML;
+        left_nav += '<li><a href="history.html">History</a></li>';
+        document.getElementById("left-nav").innerHTML = left_nav;
+
+        // var right_nav = document.getElementById("right-nav");
+        // right_nav.innerHTML = "<li><a>Hello "+session_username+"</a></li>" +
+        //                       "<li><a href='login.html' onclick='logout()'>Logout</a></li>";
+
+
+    }
+
+   
+
     
-    $("#but").on("click",function(){
-        window.alert("asd");
-        var result = "";
-        $.getJSON('http://127.0.0.1:8000/users', function(data) 
-        {
-            window.alert(data);
-            result = JSON.stringify(data);
-        });         
-        window.alert("result : " + result);
+
+    $("#button-login").on("click",function(){
+        
+        var uname = document.getElementById("text-username").value;
+        var psw =document.getElementById("text-password").value;
+
+        $.ajax({
+			url:"test_json/login.php",
+			data:{
+				username: uname,
+                password: psw
+			},
+			method:"post",
+			success:function(data){
+				var result = JSON.parse(data);
+                if(result.message != "OK"){
+                    alert(result.message);
+                }
+                else{
+                    localStorage.setItem("username",uname);
+                    localStorage.setItem("user_id",result.id);
+                    window.location.href = 'index.html';                                       
+                }
+                				
+			}
+		});
     });
 
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
+    // Get the modal
+//     var modal = document.getElementById('modal-login');
+    
+//     $("#but").on("click",function(){
+//         window.alert("asd");
+//         var result = "";
+//         $.getJSON('http://127.0.0.1:8000/users', function(data) 
+//         {
+//             window.alert(data);
+//             result = JSON.stringify(data);
+//         });         
+//         window.alert("result : " + result);
+//     });
 
-    function parseURLParams(url) {
-    var queryStart = url.indexOf("?") + 1,
-        queryEnd   = url.indexOf("#") + 1 || url.length + 1,
-        query = url.slice(queryStart, queryEnd - 1),
-        pairs = query.replace(/\+/g, " ").split("&"),
-        parms = {}, i, n, v, nv;
+//     // When the user clicks anywhere outside of the modal, close it
+//     window.onclick = function(event) {
+//         if (event.target == modal) {
+//             modal.style.display = "none";
+//         }
+//     }
 
-    if (query === url || query === "") return;
+//     function parseURLParams(url) {
+//     var queryStart = url.indexOf("?") + 1,
+//         queryEnd   = url.indexOf("#") + 1 || url.length + 1,
+//         query = url.slice(queryStart, queryEnd - 1),
+//         pairs = query.replace(/\+/g, " ").split("&"),
+//         parms = {}, i, n, v, nv;
 
-    for (i = 0; i < pairs.length; i++) {
-        nv = pairs[i].split("=", 2);
-        n = decodeURIComponent(nv[0]);
-        v = decodeURIComponent(nv[1]);
+//     if (query === url || query === "") return;
 
-        if (!parms.hasOwnProperty(n)) parms[n] = [];
-        parms[n].push(nv.length === 2 ? v : null);
-    }
-    return parms;
-}
+//     for (i = 0; i < pairs.length; i++) {
+//         nv = pairs[i].split("=", 2);
+//         n = decodeURIComponent(nv[0]);
+//         v = decodeURIComponent(nv[1]);
+
+//         if (!parms.hasOwnProperty(n)) parms[n] = [];
+//         parms[n].push(nv.length === 2 ? v : null);
+//     }
+//     return parms;
+// }
 
 </script>
 

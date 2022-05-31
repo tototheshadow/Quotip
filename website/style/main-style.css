@@ -103,6 +103,11 @@ footer {
 
 /* MARGIN + PADDING + WIDTH ------------------------------------------------------------------*/
 
+.horizontal-margin-5{
+    margin:0 5px 0;    
+}
+
+
 .left-margin-15{
     margin-left: 15px;
     
@@ -149,12 +154,22 @@ footer {
     width: 100%;
 }
 
+.width-75{
+    width: 75%;
+}
+
+
+
 .left-padding-15{
     padding-left: 50px;
 }
 
 .right-padding-15{
     padding-right: 50px;
+}
+
+.vertical-padding-5{
+    padding: 5px 0 5px;
 }
 
 /*--------------------------------------------------------------------------------------*/
@@ -223,6 +238,21 @@ footer {
 
 /*--------------------------------------------------------------------------------------*/
 
+.quotes-activity{
+    border: 2px rgba(0, 0, 0, 0.664) solid;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    
+    flex-basis: 1;
+}
+
+.card {
+    box-shadow: 0 0 10px 0 rgba(3, 3, 3, 0.452);
+    border-radius: 10px;   
+    
+ }
+
 .line-object{
     background-color: black; width: 100%; height: 3px;
 }
@@ -236,6 +266,9 @@ footer {
     
     object-fit: contain;
     object-position: center;    
+    box-sizing: border-box;    
+    border-radius: 25px;
+    width: 90%;
 }
 
 .image-circle { display: inline-block; position: relative; overflow: hidden; border-radius: 50%; }
@@ -256,6 +289,44 @@ footer {
     height: 500px;
     width: 100%;
 }
+
+/* FONT --------------------------------------------------------------------------------------*/
+
+.font-comic{
+    font-family: 'Comic Neue';
+}
+
+.font-bold{
+    font-weight: bold;
+}
+
+.font-size-35{
+    font-size: 35px;
+}
+    
+    
+
+
+/* -------------------------------------------------------------------------------------------------*/
+
+
+/* COLOR + OPACITY --------------------------------------------------------------------------------------*/
+
+.background-white{
+    background-color: rgb(249, 249, 249);
+}
+
+.border-black{
+    border: 0.5px rgba(0, 0, 0, 0.664) solid;
+}
+
+.opacity-90{
+    opacity: 90%;
+}
+
+
+/*  --------------------------------------------------------------------------------------*/
+
 
 /* MODAL --------------------------------------------------------------------------------------*/
 
@@ -316,6 +387,10 @@ footer {
 
 #about-us {  
     
+    width: 75%;
+}
+
+#story{
     width: 75%;
 }
 
