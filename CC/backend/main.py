@@ -71,12 +71,13 @@ def post_story(*, session: Session = Depends(get_session), story: models.StoryRe
     return db_story
 
 @app.get("/user/{user_id}/stories")
-def get_user_stories(*, session: Session = Depends(get_session), user_id, detailed: bool = None):
+def get_user_stories(*, session: Session = Depends(get_session), user_id, story_detailed_id: int = None):
     user = session.get(models.User, user_id)
     if not user.stories:
         raise HTTPException(status_code=404, detail="No story was found")
-    if detailed:
-        return models.StoryReturnDetailed(message="OK", stories=user.stories)
+    if story_detailed_id:
+        story_detailed =  session.get(models.Story, story_detailed_id)
+        return models.StoryReturnDetailed(message="OK", stories=story_detailed)
     return models.StoryReturn(message="OK", stories=user.stories)
 
 @app.get("/story/{story_id}", response_model=models.StoryGetWithoutUser)

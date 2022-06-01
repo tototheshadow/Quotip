@@ -13,7 +13,7 @@ class UserBase(SQLModel):
 
 class User(UserBase, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
-    created_at: datetime.datetime = datetime.datetime.now()
+    created_at: str = datetime.datetime.now().date()
     stories: List["Story"] = Relationship(back_populates="user")
     hashed_password: str
 
@@ -36,7 +36,7 @@ class UserUpdate(SQLModel):
 
 class Quote(SQLModel, table=True):
     id: int = Field(primary_key=True, index=True)
-    created_at: datetime.datetime = datetime.datetime.now()
+    created_at: str = datetime.datetime.now().date()
     quote_text: str
     stories: List["Story"] = Relationship(back_populates="quote")
 
@@ -54,7 +54,7 @@ class ActivityBase(SQLModel):
 
 class Activity(ActivityBase, table=True):
     id: int = Field(primary_key=True, index=True)
-    created_at: datetime.datetime = datetime.datetime.now()
+    created_at: str = datetime.datetime.now().date()
     story: Optional["Story"] = Relationship(back_populates="activities")
 
 class ActivityCreate(ActivityBase):
@@ -68,7 +68,7 @@ class ActivityGet(ActivityBase):
 class Story(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     story_text: str
-    created_at: datetime.datetime = datetime.datetime.now()
+    created_at: str = datetime.datetime.now().date()
     user_id: Optional[int] = Field(default=None, foreign_key="user.id")
     user: Optional[User] = Relationship(back_populates="stories")
     quote_id: Optional[int] = Field(default=None, foreign_key="quote.id")
@@ -92,6 +92,7 @@ class StoryUpdate(SQLModel):
 #----------------------------------------------------------------------------------------------
 
 class UserGetWithoutStories(UserGet):
+    created_at: str
     stories: List[StoryGet] = []
 
 class StoryGetWithoutUser(StoryGet):
@@ -127,5 +128,5 @@ class StoryReturn(SQLModel):
 
 class StoryReturnDetailed(SQLModel):
     message: str
-    stories: List[HistoryDetailed] = []
+    stories: Optional[HistoryDetailed]
 

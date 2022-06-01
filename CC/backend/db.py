@@ -1,6 +1,6 @@
 from sqlmodel import SQLModel, create_engine
 
-sqlite_file_name = "blunder.db"
+sqlite_file_name = "date.db"
 sqlite_url = f"sqlite:///{sqlite_file_name}"
 #sqlite_url = "mysql+pymysql://hariyangcerah:hoshikara@34.101.221.48/mcr"
 
