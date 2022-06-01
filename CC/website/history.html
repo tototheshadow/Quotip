@@ -35,13 +35,13 @@
 
     <main class="top-margin-30">
         <div id="main-content" class="flex-container-column align-items-center">
-            <article id="history-list" class="width-75 flex-container-column justify-content-center">
+            <article id="" class="width-75 flex-container-column justify-content-center">
 
-                <div class="top-margin-30 bottom-margin-30 font-comic font-size-35  flex-container-column align-items-center">
-                    Your History List :
+                <div id="history-list-condition" class="top-margin-30 bottom-margin-30 font-comic font-size-35  flex-container-column align-items-center">
+                    Your History List : 
                 </div>
-                <div class="flex-container-column align-items-center justify-content-center">
-                    <div class="bottom-margin-20 history-item flex-container-column vertical-padding-5 card background-crimson">
+                <div id="history-list" class="flex-container-column align-items-center justify-content-center">
+                    <!-- <div class="bottom-margin-20 history-item flex-container-column vertical-padding-5 card background-crimson">
                         <h3>Monday, 6 June 2022</h3>
                         <div class="line-object"></div> 
                         <span class="tanda-petik top-margin-15 font-size-35">"</span>
@@ -70,7 +70,8 @@
                         <div class=" line-object"></div> 
                         <p  class="story">I feel my life is so heavy, too many things to do.</p>
                         
-                    </div>
+                    </div> -->
+                 
                 </div>
 
             </article>
@@ -91,10 +92,7 @@
     <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
     <script>
 
-
-        function logout() {
-            localStorage.clear();
-        }
+        
 
         var session_username = localStorage.getItem("username");
         if (session_username != "" && session_username != null) {
@@ -106,12 +104,71 @@
             right_nav.innerHTML = "<li><a>Hello, " + session_username + "</a></li>" +
                 "<li><a href='login.html' onclick='logout()'>Logout</a></li>";
 
+            var session_user_id = localStorage.getItem("user_id");
+
+            $.ajax({
+                url:"test_json/history.php",
+                data:{
+                    user_id: session_user_id                   
+                },
+                method:"post",
+                success:function(data){
+                    var result = JSON.parse(data);
+                    if(result.message != "OK"){
+                        document.getElementById("history-list-condition").innerHTML = "Your History List : None <br><a style='font-size:25px; font-family:sans-serif;' href='quotes.html'>Want to tell your story?</a>"
+                    }
+                    else{    
+
+                        var history_list = "";
+
+                        // alert(result.stories[0].id);
+                        
+                        result.stories.forEach(story => {
+                        
+                            history_list += '<div class="bottom-margin-20 history-item flex-container-column vertical-padding-5 card background-crimson">' +
+                                '<h3>'+story.datetime+'</h3>' +
+                                '<div class="line-object"></div> ' +
+                                '<span class="tanda-petik top-margin-15 font-size-35">"</span>' +
+                                '<p  class="quotes font-size-35 ">'+story.quotes+'</p>' +
+                                '<span class="flex-container-column justify-content-end align-items-end tanda-petik font-size-35">"</span>' +
+                                '<div class=" line-object"></div> ' +
+                                '<p  class="story">'+story.story_text+'</p>' +
+                                '<input type="hidden" value="'+story.id+'">'+                                
+                            '</div>';
+                            
+                            
+                            
+                            
+                        
+                        });
+
+                        document.getElementById("history-list").innerHTML = history_list;                     
+                    
+                        
+
+                                                               
+                    }
+                                    
+                }
+            });
+
 
         }
         else {
             alert("Please login first to use 'History Feature.'");
             window.location.href = 'login.html';
         }
+
+        
+
+
+        function logout() {
+            localStorage.clear();
+        }
+
+
+        
+        
     </script>
 
 
