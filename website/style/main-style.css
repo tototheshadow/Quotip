@@ -141,6 +141,10 @@ footer {
     margin-bottom: 15px;    
 }
 
+.bottom-margin-20{
+    margin-bottom: 20px;    
+}
+
 .bottom-margin-30{
     margin-bottom: 30px;    
 }
@@ -161,11 +165,11 @@ footer {
 
 
 .left-padding-15{
-    padding-left: 50px;
+    padding-left: 15px ;
 }
 
 .right-padding-15{
-    padding-right: 50px;
+    padding-right: 15px ;
 }
 
 .vertical-padding-5{
@@ -245,6 +249,14 @@ footer {
     height: 100%;
     
     flex-basis: 1;
+}
+
+.history-item{
+    border: 2px rgba(0, 0, 0, 0.664) solid;
+    box-sizing: border-box;
+    width: 100%;    
+    padding: 0 15px 0;  
+    
 }
 
 .card {
