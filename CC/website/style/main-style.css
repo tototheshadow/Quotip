@@ -188,6 +188,10 @@ footer {
     text-align: center;
 }
 
+.text-align-justify{
+    text-align: justify;
+}
+
 /* ------------------------------------------------------------------*/
 
 
@@ -265,6 +269,20 @@ footer {
     
  }
 
+.story{
+    resize: vertical;
+    font-family: 'Comic Neue';
+    font-size: 20px; 
+    text-align: justify;
+}
+
+.quotes{
+    font-family: "Indie Flower"; 
+    resize: vertical; 
+    text-align: center;
+    margin: 0 5px 0;
+}
+
 .line-object{
     background-color: black; width: 100%; height: 3px;
 }
@@ -315,6 +333,16 @@ footer {
 .font-size-35{
     font-size: 35px;
 }
+
+.font-size-20{
+    font-size: 20px;
+}
+
+.font-size-100{
+    font-size: 100px;  
+}
+
+
     
     
 
@@ -442,8 +470,7 @@ footer {
 }
 
 .tanda-petik{
-    font-family: 'BIZ UDPGothic';
-    font-size: 100px;    
+    font-family: 'BIZ UDPGothic';      
 }
 
 .background-blue{
