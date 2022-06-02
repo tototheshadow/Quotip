@@ -1,0 +1,20 @@
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
+    <script>
+        async function run() {
+            const MODEL_URL = 'http://127.0.0.1:8887/model.json';
+            const model = await tf.loadLayersModel(MODEL_URL);
+            console.log(model.summary());
+            // const input = tf.tensor1d('i feel good');
+            // const result = model.predict(input);
+            // alert(result)
+        }
+        run();
+    </script>
+</head>
+
+<body></body>
+
+</html>
