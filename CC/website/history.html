@@ -37,8 +37,9 @@
         <div id="main-content" class="flex-container-column align-items-center">
             <article id="" class="width-75 flex-container-column justify-content-center">
 
-                <div id="history-list-condition" class="top-margin-30 bottom-margin-30 font-comic font-size-35  flex-container-column align-items-center">
-                    Your History List : 
+                <div id="history-list-condition"
+                    class="top-margin-30 bottom-margin-30 font-comic font-size-35  flex-container-column align-items-center">
+                    Your History List :
                 </div>
                 <div id="history-list" class="flex-container-column align-items-center justify-content-center">
                     <!-- <div class="bottom-margin-20 history-item flex-container-column vertical-padding-5 card background-crimson">
@@ -71,12 +72,12 @@
                         <p  class="story">I feel my life is so heavy, too many things to do.</p>
                         
                     </div> -->
-                 
+
                 </div>
 
             </article>
 
-        
+
 
         </div>
 
@@ -90,9 +91,10 @@
     </footer>
 
     <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="js/function.js"></script>
     <script>
 
-        
+
 
         var session_username = localStorage.getItem("username");
         if (session_username != "" && session_username != null) {
@@ -106,51 +108,33 @@
 
             var session_user_id = localStorage.getItem("user_id");
 
-            $.ajax({
-                url:"test_json/history.php",
-                data:{
-                    user_id: session_user_id                   
-                },
-                method:"post",
-                success:function(data){
-                    var result = JSON.parse(data);
-                    if(result.message != "OK"){
-                        document.getElementById("history-list-condition").innerHTML = "Your History List : None <br><a style='font-size:25px; font-family:sans-serif;' href='quotes.html'>Want to tell your story?</a>"
-                    }
-                    else{    
+            GetAllHistory(session_user_id).then(response => response.json()).then(data => {
+                if (data.message != "OK") {
+                    document.getElementById("history-list-condition").innerHTML = "Your History List : None <br><a style='font-size:25px; font-family:sans-serif;' href='quotes.html'>Want to tell your story?</a>"
+                }
+                else {
 
-                        var history_list = "";
+                    var history_list = "";                  
 
-                        // alert(result.stories[0].id);
-                        
-                        result.stories.forEach(story => {
-                        
-                            history_list += '<div class="bottom-margin-20 history-item flex-container-column vertical-padding-5 card background-crimson">' +
-                                '<h3>'+story.datetime+'</h3>' +
-                                '<div class="line-object"></div> ' +
-                                '<span class="tanda-petik top-margin-15 font-size-35">"</span>' +
-                                '<p  class="quotes font-size-35 ">'+story.quotes+'</p>' +
-                                '<span class="flex-container-column justify-content-end align-items-end tanda-petik font-size-35">"</span>' +
-                                '<div class=" line-object"></div> ' +
-                                '<p  class="story">'+story.story_text+'</p>' +
-                                '<input type="hidden" value="'+story.id+'">'+                                
+                    data.stories.forEach(story => {
+
+                        history_list += '<div class="bottom-margin-20 history-item flex-container-column vertical-padding-5 card background-crimson">' +
+                            '<h3>' + story.datetime + '</h3>' +
+                            '<div class="line-object"></div> ' +
+                            '<span class="tanda-petik top-margin-15 font-size-35">"</span>' +
+                            '<p  class="quotes font-size-35 ">' + story.quotes + '</p>' +
+                            '<span class="flex-container-column justify-content-end align-items-end tanda-petik font-size-35">"</span>' +
+                            '<div class=" line-object"></div> ' +
+                            '<p  class="story">' + story.story_text + '</p>' +
+                            '<input type="hidden" value="' + story.id + '">' +
                             '</div>';
-                            
-                            
-                            
-                            
-                        
-                        });
+                    });
 
-                        document.getElementById("history-list").innerHTML = history_list;                     
-                    
-                        
-
-                                                               
-                    }
-                                    
+                    document.getElementById("history-list").innerHTML = history_list;
                 }
             });
+
+            
 
 
         }
@@ -159,16 +143,13 @@
             window.location.href = 'login.html';
         }
 
-        
-
-
         function logout() {
             localStorage.clear();
         }
 
 
-        
-        
+
+
     </script>
 
 

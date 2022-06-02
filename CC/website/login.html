@@ -81,13 +81,15 @@
     var session_username = localStorage.getItem("username");   
     if(session_username != "" && session_username != null)
     {
-        var left_nav = document.getElementById("left-nav").innerHTML;
-        left_nav += '<li><a href="history.html">History</a></li>';
-        document.getElementById("left-nav").innerHTML = left_nav;
+        logout();
 
-        // var right_nav = document.getElementById("right-nav");
-        // right_nav.innerHTML = "<li><a>Hello "+session_username+"</a></li>" +
-        //                       "<li><a href='login.html' onclick='logout()'>Logout</a></li>";
+        // var left_nav = document.getElementById("left-nav").innerHTML;
+        // left_nav += '<li><a href="history.html">History</a></li>';
+        // document.getElementById("left-nav").innerHTML = left_nav;
+
+        // // var right_nav = document.getElementById("right-nav");
+        // // right_nav.innerHTML = "<li><a>Hello "+session_username+"</a></li>" +
+        // //                       "<li><a href='login.html' onclick='logout()'>Logout</a></li>";
 
 
     }
@@ -100,6 +102,8 @@
         
         var uname = document.getElementById("text-username").value;
         var psw =document.getElementById("text-password").value;
+
+        
 
         $.ajax({
 			url:"test_json/login.php",
