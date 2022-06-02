@@ -7,6 +7,10 @@ const api_url = "http://127.0.0.1:8000/";
 //     return data;
 // }
 
+function Logout(){
+    localStorage.clear();
+}
+
 async function getUsers() {
     const response = await fetch(api_url + "users");    
     return response;
@@ -24,19 +28,20 @@ async function Login(uname,psw) {
         }
     });
 
-    const data = await response.json();
-    console.log(data);
+    // const data = await response.json();
+    // console.log(data);
+    return response;
 
 }
 
-async function Register() {
+async function Register(uname,psw) {
     var response = await fetch(api_url + "register", {
         method: "POST",
         body: JSON.stringify({
-            username: "haje",
-            name: "haje",
-            biography: "haje",
-            hashed_password: "haje"
+            username: uname,
+            name: uname,
+            biography: "A user on Quotip.",
+            hashed_password: psw
 
         }),
         headers: {
@@ -44,16 +49,17 @@ async function Register() {
         }
     });
 
-    const data = await response.json();
-    console.log(data);
+    // const data = await response.json();
+    // console.log(data);
+    return response;
 
 }
 
-async function TellStory() {
-    var response = await fetch(api_url + "user/ " + 2 + "/story", {
+async function TellStory(story,user_id) {
+    var response = await fetch(api_url + "user/ " + user_id + "/story", {
         method: "POST",
         body: JSON.stringify({
-            story_text: "haje",
+            story_text: story,
 
         }),
         headers: {
@@ -61,17 +67,19 @@ async function TellStory() {
         }
     });
 
-    const data = await response.json();
-    console.log(data);
+    // const data = await response.json();
+    // console.log(data);
+    return response;
 
 }
 
-async function GetHistoryDetail() {
-    var response = await fetch(api_url + "user/" + 2 + "/stories?story_detailed_id=" + 7, {
+async function GetHistoryDetail(user_id,story_id) {
+    var response = await fetch(api_url + "user/" + user_id + "/stories?story_detailed_id=" + story_id, {
         method: "GET",
     });
-    const data = await response.json();
-    console.log(data);
+    // const data = await response.json();
+    // console.log(data);
+    return response;
 
 }
 

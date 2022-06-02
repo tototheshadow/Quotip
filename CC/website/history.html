@@ -19,7 +19,7 @@
         <h1 class="color-white"><a href="index.html">Quotip</a></h1>
         <nav class="width-100" id="nav-top-left">
             <ul id="left-nav">
-                <li><a href="#about-us">About Us</a></li>
+                <li><a href="index.html#about-us">About Us</a></li>
                 <li><a href="quotes.html">Get Quotes</a></li>
             </ul>
         </nav>
@@ -76,6 +76,7 @@
                 </div>
 
             </article>
+            
 
 
 
@@ -104,19 +105,19 @@
 
             var right_nav = document.getElementById("right-nav");
             right_nav.innerHTML = "<li><a>Hello, " + session_username + "</a></li>" +
-                "<li><a href='login.html' onclick='logout()'>Logout</a></li>";
+                "<li><a href='login.html' onclick='Logout()'>Logout</a></li>";
 
             var session_user_id = localStorage.getItem("user_id");
 
-            GetAllHistory(session_user_id).then(response => response.json()).then(data => {
-                if (data.message != "OK") {
-                    document.getElementById("history-list-condition").innerHTML = "Your History List : None <br><a style='font-size:25px; font-family:sans-serif;' href='quotes.html'>Want to tell your story?</a>"
+            GetAllHistory(session_user_id).then(response => response.json()).then(result => {
+                if (result.message != "OK") {
+                    document.getElementById("history-list-condition").innerHTML = "Your History List : None <br><a style='font-size:25px; font-family:sans-serif;' href='quotes.html'>Want to tell your story?</a><article class='article-2'></article>"
                 }
                 else {
 
                     var history_list = "";                  
 
-                    data.stories.forEach(story => {
+                    result.stories.forEach(story => {
 
                         history_list += '<div class="bottom-margin-20 history-item flex-container-column vertical-padding-5 card background-crimson">' +
                             '<h3>' + story.datetime + '</h3>' +
@@ -143,9 +144,7 @@
             window.location.href = 'login.html';
         }
 
-        function logout() {
-            localStorage.clear();
-        }
+        
 
 
 

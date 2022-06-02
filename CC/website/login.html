@@ -72,27 +72,26 @@
     </footer>
 
 <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="js/function.js"></script>
 <script>    
 
-    function logout(){
-        localStorage.clear();
-    }
+    Logout();
 
-    var session_username = localStorage.getItem("username");   
-    if(session_username != "" && session_username != null)
-    {
-        logout();
+    // var session_username = localStorage.getItem("username");   
+    // if(session_username != "" && session_username != null)
+    // {
+    //     
 
-        // var left_nav = document.getElementById("left-nav").innerHTML;
-        // left_nav += '<li><a href="history.html">History</a></li>';
-        // document.getElementById("left-nav").innerHTML = left_nav;
+    //     // var left_nav = document.getElementById("left-nav").innerHTML;
+    //     // left_nav += '<li><a href="history.html">History</a></li>';
+    //     // document.getElementById("left-nav").innerHTML = left_nav;
 
-        // // var right_nav = document.getElementById("right-nav");
-        // // right_nav.innerHTML = "<li><a>Hello "+session_username+"</a></li>" +
-        // //                       "<li><a href='login.html' onclick='logout()'>Logout</a></li>";
+    //     // // var right_nav = document.getElementById("right-nav");
+    //     // // right_nav.innerHTML = "<li><a>Hello "+session_username+"</a></li>" +
+    //     // //                       "<li><a href='login.html' onclick='logout()'>Logout</a></li>";
 
 
-    }
+    // }
 
    
 
@@ -103,18 +102,9 @@
         var uname = document.getElementById("text-username").value;
         var psw =document.getElementById("text-password").value;
 
-        
 
-        $.ajax({
-			url:"test_json/login.php",
-			data:{
-				username: uname,
-                password: psw
-			},
-			method:"post",
-			success:function(data){
-				var result = JSON.parse(data);
-                if(result.message != "OK"){
+        Login(uname,psw).then(response => response.json()).then(result => {
+            if(result.message != "OK"){
                     alert(result.message);
                 }
                 else{
@@ -122,9 +112,8 @@
                     localStorage.setItem("user_id",result.id);
                     window.location.href = 'index.html';                                       
                 }
-                				
-			}
-		});
+        });
+
     });
 
     // Get the modal

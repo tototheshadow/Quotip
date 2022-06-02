@@ -81,12 +81,10 @@
     <script type="text/javascript" src="js/function.js"></script>
     <script>
 
-        function logout() {
-            localStorage.clear();
-        }
+       
         var session_username = localStorage.getItem("username");
         if (session_username != "" && session_username != null) {
-            logout();
+            Logout();
             // var left_nav = document.getElementById("left-nav").innerHTML;
             // left_nav += '<li><a href="history.html">History</a></li>';
             // document.getElementById("left-nav").innerHTML = left_nav;
@@ -109,23 +107,17 @@
                 alert("Your Password and Repeat Password is different!.");
             }
             else {
-                
-                var response = await fetch(api_url + "register", {
-                    method: "POST",
-                    body: JSON.stringify({
-                        username: "haje",
-                        name: "haje",
-                        biography: "haje",
-                        hashed_password: "haje"
 
-                    }),
-                    headers: {
-                        "Content-type": "application/json; charset=UTF-8"
-                    }
-                });
-
-                const data = await response.json();
-                console.log(data);
+                Register(uname,psw).then(response=>response.json()).then(result=>{
+                  if(result.message != "OK"){
+                    alert(result.message);                    
+                  }
+                  else{
+                    alert("Proceed to Login your New Account!");
+                    window.location.href ="login.html";
+                  }
+                });              
+               
                 
 
             }
