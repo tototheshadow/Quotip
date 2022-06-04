@@ -60,7 +60,24 @@
 
 
                 <div id="activity-place">
-                
+                    <div id="activity-condition"
+                        class="top-margin-30 bottom-margin-30 font-comic font-size-35  flex-container-column align-items-center">
+                        Here is some activity that you can do to help your mood :</div>
+                    <div id="act-container" class="flex-container-row align-items-center justify-content-center">
+                        <!-- <div class="quotes-activity flex-container-column align-items-center vertical-padding-5 card ">
+                            <h3>Jogging</h3>
+                            <img src="img/act_jogging.jpg" alt="" class="image-fit-cover ">
+                        </div>
+                        <div
+                            class="quotes-activity flex-container-column align-items-center horizontal-margin-5 vertical-padding-5 card">
+                            <h3>Reading</h3>
+                            <img src="img/act_reading.jpg" alt="" class="image-fit-cover ">
+                        </div>
+                        <div class="quotes-activity flex-container-column align-items-center vertical-padding-5 card">
+                            <h3>Socialize</h3>
+                            <img src="img/act_socialize.jpg" alt="" class="image-fit-cover">
+                        </div> -->
+                    </div>
 
                 </div>
 
@@ -70,8 +87,7 @@
             </article>
 
             <article id="story" class="flex-container-column justify-content-center top-margin-30">
-                <textarea name="text-story" id="text-story" class="text-story" cols="30" rows="5"></textarea>
-                <button class="button-purple top-margin-15" onclick="pasteStory()">Tell Your Story</button>
+                <div id="text-story" class="text-story border-black padding-1p"></div>
             </article>
 
             <article id="article-2" class="top-margin-30">
@@ -104,49 +120,59 @@
             right_nav.innerHTML = "<li><a>Hello, " + session_username + "</a></li>" +
                 "<li><a href='login.html' onclick='Logout()'>Logout</a></li>";
 
+            var session_user_id = localStorage.getItem("user_id");
+
+            const urlParams = new URLSearchParams(location.search);
+            var arrParam = urlParams.split("?id=");
+            var history_id = arrParam[1];
+
+            GetHistoryDetail(session_user_id, history_id).then(response => response.json()).then(result => {
+                if (result.message != "OK") {
+                    alert(result.message);
+                }
+                else {
+
+                    var story = result.stories;
+                    document.getElementById("text-quotes").innerHTML = story.quote.quote_text;
+                    document.getElementById("text-story").innerHTML = story.story_text;
+
+                    if (story.activity != null) {
+
+                        var activity = "";
+
+                        story.activity.forEach(element => {
+
+                            activity += '<div class="quotes-activity flex-container-column align-items-center vertical-padding-5 card ">' +
+                                '<h3>'+element.activity+'</h3>' +
+                                '<img src="img/act_jogging.jpg" alt="" class="image-fit-cover ">' +
+                                '</div>'
+                        });
+
+                        document.getElementById("act-container").innerHTML = activity;
+
+                        
+
+
+                    }
+                    else {
+                        document.getElementById("activity-condition").innerHTML = "Here is some activity that you can do to help your mood : Not Found."
+
+                    }
+
+
+
+                    document.getElementById("history-list").innerHTML = history_list;
+                }
+            });
 
         }
-
-        function pasteStory() {
-            var story = "Jangan berpaling dari capstone, harus BANGKIT!";
-            document.getElementById("text-quotes").innerHTML = story;
-
-            var act = '<div class="top-margin-30 bottom-margin-30 font-comic font-size-35  flex-container-column align-items-center">Here is some activity that you can do to help your mood :</div>' +
-                '<div id="act-container" class="flex-container-row align-items-center justify-content-center">' +
-                '<div class="quotes-activity flex-container-column align-items-center vertical-padding-5 card">' +
-                '<h3>Jogging</h3>' +
-                '<img src="img/act_jogging.jpg" alt="" class="image-fit-cover " >' +
-                '</div>  ' +
-                '<div class="quotes-activity flex-container-column align-items-center horizontal-margin-5 vertical-padding-5 card">' +
-                '<h3>Reading</h3>' +
-                '<img src="img/act_reading.jpg" alt="" class="image-fit-cover " >' +
-                '</div>' +
-                '<div class="quotes-activity flex-container-column align-items-center vertical-padding-5 card">' +
-                '<h3>Socialize</h3>' +
-                '<img src="img/act_socialize.jpg" alt="" class="image-fit-cover" >' +
-                '</div>' +
-                '</div>';
-
-            document.getElementById("activity-place").innerHTML = act;
-
-            // <div class="top-margin-30 bottom-margin-30 font-comic font-size-35  flex-container-column align-items-center">Here is some activity that you can do to help your mood :</div>
-            // <div id="act-container" class="flex-container-row align-items-center justify-content-center">
-            // <div class="quotes-activity flex-container-column align-items-center vertical-padding-5 card background-crimson">
-            // <h3>Jogging</h3>
-            // <img src="img/act_jogging.jpg" alt="" class="image-fit-cover " >
-            // </div>  
-            // <div class="quotes-activity flex-container-column align-items-center horizontal-margin-5 vertical-padding-5 card">
-            // <h3>Reading</h3>
-            // <img src="img/act_reading.jpg" alt="" class="image-fit-cover " >
-            // </div>
-            // <div class="quotes-activity flex-container-column align-items-center vertical-padding-5 card">
-            // <h3>Socialize</h3>
-            // <img src="img/act_socialize.jpg" alt="" class="image-fit-cover" >
-            // </div>
-            // </div>
+        // else {
+        //     alert("Please login first to use 'History Feature.'");
+        //     window.location.href = 'login.html';
+        // }
 
 
-        }
+
 
 
 

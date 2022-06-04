@@ -10,6 +10,9 @@
 
     <link rel="icon" href="img/quotip_logo.png" type="image/x-icon">
     <link rel="stylesheet" href="style/main-style.css">
+    <style>
+
+    </style>
 </head>
 
 <body>
@@ -119,14 +122,15 @@
 
                     result.stories.forEach(story => {
 
-                        history_list += '<div class="bottom-margin-20 history-item flex-container-column vertical-padding-5 card background-crimson">' +
-                            '<h3>' + story.datetime + '</h3>' +
+                        history_list += '<div value="'+story.id+'" class="bottom-margin-20 history-item flex-container-column vertical-padding-5 card">' +
+                            // '<h3>' + story.datetime + '</h3>' +
+                            '<h3><a class="color-green" href="history_detail.html?id='+story.id+'">Detailed History</a></h3>' +
                             '<div class="line-object"></div> ' +
                             '<span class="tanda-petik top-margin-15 font-size-35">"</span>' +
-                            '<p  class="quotes font-size-35 ">' + story.quotes + '</p>' +
+                            '<p  class="quotes font-size-35 ">' + story.quote.quote_text + '</p>' +
                             '<span class="flex-container-column justify-content-end align-items-end tanda-petik font-size-35">"</span>' +
                             '<div class=" line-object"></div> ' +
-                            '<p  class="story">' + story.story_text + '</p>' +
+                            '<p  class="text-story">' + story.story_text + '</p>' +
                             '<input type="hidden" value="' + story.id + '">' +
                             '</div>';
                     });
@@ -143,6 +147,16 @@
             alert("Please login first to use 'History Feature.'");
             window.location.href = 'login.html';
         }
+
+        // $(document).click(function(element){
+        //     var text = $(element.target).attr("value");
+        //     alert(text);
+        // });
+
+        // $(document).click(function (element) {
+        //     var text = $(element.target).attr("value");
+        //     alert(text);
+        // });
 
         
 
