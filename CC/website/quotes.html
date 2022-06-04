@@ -58,25 +58,28 @@
                 <div class="line-object top-margin-15"></div>
 
 
-
                 <div id="activity-place">
-                
+
+
 
                 </div>
-
-
-
-
             </article>
 
             <article id="story" class="flex-container-column justify-content-center top-margin-30">
                 <textarea name="text-story" id="text-story" class="text-story" cols="30" rows="5"></textarea>
-                <button class="button-purple top-margin-15" onclick="pasteStory()">Tell Your Story</button>
+                <div class="flex-container-column width-100 top-margin-15 ">
+                    <div class="bottom-margin-15">
+                        Check the tag that match your story :
+                    </div>
+                    <div id="tag-list" class="flex-wrap flex-container-row flex-base-1">
+
+                    </div>
+
+                </div>
+                <button class="green-button top-margin-15 bottom-margin-30" onclick="SendStory()">Tell Your Story</button>
             </article>
 
-            <article id="article-2" class="top-margin-30">
-
-            </article>
+          
 
         </div>
 
@@ -93,6 +96,23 @@
     <script type="text/javascript" src="js/function.js"></script>
     <script>
 
+        var tag_list_place = document.getElementById("tag-list");
+        var tagArr = [];
+        var str = "";
+        var tag_count = 0;
+
+        for (let i = 0; i <= 10; i++) {
+            tagArr.push("tag" + i);
+        }
+
+        tagArr.forEach(item => {
+            str += '<input type="checkbox" class="tag" id="'+item+'" name="'+item+'" value="'+item+'">' +
+                '<label class="right-margin-15 " for="'+item+'"> '+item+'</label>  ';
+        });
+
+        tag_list_place.innerHTML = str;
+
+       
 
         var session_username = localStorage.getItem("username");
         if (session_username != "" && session_username != null) {
@@ -103,50 +123,100 @@
             var right_nav = document.getElementById("right-nav");
             right_nav.innerHTML = "<li><a>Hello, " + session_username + "</a></li>" +
                 "<li><a href='login.html' onclick='Logout()'>Logout</a></li>";
+        }
+
+        var session_user_id = localStorage.getItem("user_id");
+
+        if (session_user_id == "" || session_user_id == null) {
+            session_user_id = "";
+        }
+
+        function SendStory() {
+            var user_story = document.getElementById("text-story").value;
+            TellStory(session_user_id, user_story).then(response => response.json()).then(result => {
+                if (result.message != "OK") {
+                    alert(result.message);
+                }
+                else {
+
+                    document.getElementById('text-qutoes').innerHTML = result.quote_text;
+                    if (result.activity != null) {
+
+                        var activity = '<div id="act-container" class="flex-container-row align-items-center justify-content-center">';
+
+                        result.activity.forEach(element => {
+
+                            var url_img = "";
+                            if (element.url_images == null || element.url_images == "") {
+                                url_img = "img/question_mark.png";
+                            }
+                            else {
+                                url_img = element.url_images;
+                            }
+
+                            activity += '<div class="quotes-activity flex-container-column align-items-center vertical-padding-5 card ">' +
+                                '<h3>' + element.activity + '</h3>' +
+                                '<img src="' + url_img + '" alt="" class="image-fit-cover ">' +
+                                '</div>'
+                        });
+
+                        activity += "</div>";
+                        var act_div1 = '<div class=" top-margin-30 bottom-margin-30 font-comic font-size-35  flex-container-column align-items-center">' +
+                            '<span id="activity-condition" class="font-size-2vw">Here is some activity that you can do to help your mood : </span></div>';
+
+                        document.getElementById("act-container").innerHTML = act_div1 + activity;
+
+
+
+
+                    }
+                    else {
+                        var act_div2 = '<div class=" top-margin-30 bottom-margin-30 font-comic font-size-35  flex-container-column align-items-center">' +
+                            '<span id="activity-condition" class="font-size-2vw">Here is some activity that you can do to help your mood : </span></div>';
+
+                        document.getElementById("act-container").innerHTML = act_div2;
+
+                    }
+
+
+
+                }
+            });
 
 
         }
 
-        function pasteStory() {
-            var story = "Jangan berpaling dari capstone, harus BANGKIT!";
-            document.getElementById("text-quotes").innerHTML = story;
+        $(".tag").on("click",function(){
 
-            var act = '<div class="top-margin-30 bottom-margin-30 font-comic font-size-35  flex-container-column align-items-center">Here is some activity that you can do to help your mood :</div>' +
-                '<div id="act-container" class="flex-container-row align-items-center justify-content-center">' +
-                '<div class="quotes-activity flex-container-column align-items-center vertical-padding-5 card">' +
-                '<h3>Jogging</h3>' +
-                '<img src="img/act_jogging.jpg" alt="" class="image-fit-cover " >' +
-                '</div>  ' +
-                '<div class="quotes-activity flex-container-column align-items-center horizontal-margin-5 vertical-padding-5 card">' +
-                '<h3>Reading</h3>' +
-                '<img src="img/act_reading.jpg" alt="" class="image-fit-cover " >' +
-                '</div>' +
-                '<div class="quotes-activity flex-container-column align-items-center vertical-padding-5 card">' +
-                '<h3>Socialize</h3>' +
-                '<img src="img/act_socialize.jpg" alt="" class="image-fit-cover" >' +
-                '</div>' +
-                '</div>';
+            var con = $(this).prop("checked"); 
 
-            document.getElementById("activity-place").innerHTML = act;
+            if(con == false){                           
+                tag_count-=1;
+            }
+            else{
+                tag_count +=1;
+            }   
 
-            // <div class="top-margin-30 bottom-margin-30 font-comic font-size-35  flex-container-column align-items-center">Here is some activity that you can do to help your mood :</div>
-            // <div id="act-container" class="flex-container-row align-items-center justify-content-center">
-            // <div class="quotes-activity flex-container-column align-items-center vertical-padding-5 card background-crimson">
-            // <h3>Jogging</h3>
-            // <img src="img/act_jogging.jpg" alt="" class="image-fit-cover " >
-            // </div>  
-            // <div class="quotes-activity flex-container-column align-items-center horizontal-margin-5 vertical-padding-5 card">
-            // <h3>Reading</h3>
-            // <img src="img/act_reading.jpg" alt="" class="image-fit-cover " >
-            // </div>
-            // <div class="quotes-activity flex-container-column align-items-center vertical-padding-5 card">
-            // <h3>Socialize</h3>
-            // <img src="img/act_socialize.jpg" alt="" class="image-fit-cover" >
-            // </div>
-            // </div>
+            if(tag_count > 3){
+                alert("Can only pick 3 tags that suit the best.");
+                $(this).prop("checked",false);     
+                tag_count-=1           
+            }     
+            
+                   
 
 
-        }
+        });
+
+        $("#but").on("click",function(){
+            alert('tes');
+            $("#tag1").prop("checked",false);
+            alert('tes2');
+        });
+
+
+
+
 
 
 

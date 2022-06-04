@@ -55,7 +55,7 @@ async function Register(uname,psw) {
 
 }
 
-async function TellStory(story,user_id) {
+async function TellStory(user_id,story) {
     var response = await fetch(api_url + "user/ " + user_id + "/story", {
         method: "POST",
         body: JSON.stringify({

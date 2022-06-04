@@ -218,6 +218,10 @@ footer {
     flex-direction: row;    
 }
 
+.flex-wrap{
+    flex-wrap: wrap;
+}
+
 .flex-grow-1{
     flex-grow: 1;
 }
@@ -229,6 +233,15 @@ footer {
 .flex-grow-3{
     flex-grow: 3;
 }
+
+.flex-base-1{
+    flex-basis: 1;
+}
+
+.flex-base-3{
+    flex-basis: 3;
+}
+
 
 
 .justify-content-center{
@@ -342,6 +355,10 @@ footer {
 
 .font-bold{
     font-weight: bold;
+}
+
+.font-size-2vw{
+    font-size: 2vw;
 }
 
 .font-size-35{
@@ -483,12 +500,12 @@ footer {
 .text-story{
     resize: vertical;
     font-family: 'Cormorrant Garamond';
-    font-size: 35px;
+    font-size: 2vw;
 }
 
 #text-quotes{
     font-family: "Indie Flower";
-    font-size: 3vw;
+    font-size: 4vw;
 }
 
 #act-container{
