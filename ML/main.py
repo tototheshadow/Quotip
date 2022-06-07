@@ -17,13 +17,11 @@ def index():
 
 @app.get('/predict')
 def predict():
-    # print(tf.Session())
     with open('tokenizer.pickle', 'rb') as handle:
         Tokenizer = pickle.load(handle)
 
-    model = tf.keras.models.load_model("model_final.model", device='cuda')
-    # with open('model_pkl' , 'rb') as f:
-    #     model = pickle.load(f)
+    model = tf.keras.models.load_model("model_final.model")
+
     padding_type='post'
     max_length = 32
 
@@ -35,8 +33,21 @@ def predict():
     sentence_padded = tf.keras.preprocessing.sequence.pad_sequences(sentence_processed, padding=padding_type, maxlen=max_length)
     predicted = model.predict(sentence_padded)
     no_class = np.argmax(predicted)
+    if no_class == 1:
+        emotion = 'joy'
+    elif no_class == 2:
+        emotion = 'sadness'
+    elif no_class == 3:
+        emotion = 'anger'
+    elif no_class == 4:
+        emotion = 'fear'
+    elif no_class == 5:
+        emotion = 'love'
+    else :
+        emotion = 'surprise'
+    print(emotion)
     return {
-    'prediction': no_class,
+    'prediction': emotion,
 }
 
 def preprocess_text(sen):
