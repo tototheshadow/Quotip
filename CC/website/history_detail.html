@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Quotip : Quotes Everyday</title>
+
+    <link rel="icon" href="img/quotip_logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="style/main-style.css">
+</head>
+
+<body>
+
+    <header class="flex-container-row">
+        <span class="left-margin-15"><img src="img/quotip_logo.png" alt=""></span>
+        <h1 class="color-white"><a href="index.html">Quotip</a></h1>
+        <nav class="width-100" id="nav-top-left">
+            <ul id="left-nav">
+                <li><a href="index.html">About Us</a></li>
+                <li><a href="quotes.html">Get Quotes</a></li>
+            </ul>
+        </nav>
+
+        <nav class="width-100" id="nav-top-right">
+            <ul id="right-nav" style="display: flex; align-items: flex-end; justify-content: flex-end;">
+                <li><a href="login.html">Login</a></li>
+                <li><a href="signup.html">Sign-Up</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <main class="top-margin-30">
+        <div id="main-content" class="flex-container-column align-items-center justify-content-center">
+            <article id="quotes-display" class="flex-container-column justify-content-center ">
+
+                <div class="line-object bottom-margin-15"></div>
+                <span class="tanda-petik top-margin-30 font-size-100">"</span>
+
+                <div class="flex-container-row justify-content-center">
+
+                    <div class="flex-container-column justify-content-center align-items-center">
+                        <div class="" id="quotes-text">
+                            <div id="text-quotes" class="text-align-center">
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+                <span
+                    class="flex-container-column justify-content-end align-items-end tanda-petik font-size-100">"</span>
+                <div class="line-object top-margin-15"></div>
+
+
+
+                <div id="activity-place">
+                    <div class=" top-margin-30 bottom-margin-30 font-comic font-size-35  flex-container-column align-items-center">
+                        <span id="activity-condition" class="font-size-2vw">Here is some activity that you can do to help your mood :</span></div>
+                    <!-- <div id="act-container" class="flex-container-row align-items-center justify-content-center">
+                        <div class="quotes-activity flex-container-column align-items-center vertical-padding-5 card ">
+                            <h3>Jogging</h3>
+                            <img src="img/act_jogging.jpg" alt="" class="image-fit-cover ">
+                        </div>
+                        <div
+                            class="quotes-activity flex-container-column align-items-center horizontal-margin-5 vertical-padding-5 card">
+                            <h3>Reading</h3>
+                            <img src="img/act_reading.jpg" alt="" class="image-fit-cover ">
+                        </div>
+                        <div class="quotes-activity flex-container-column align-items-center vertical-padding-5 card">
+                            <h3>Socialize</h3>
+                            <img src="img/act_socialize.jpg" alt="" class="image-fit-cover">
+                        </div>
+                    </div> -->
+
+                </div>
+
+
+
+
+            </article>
+
+            <article id="story" class="flex-container-column justify-content-center top-margin-30">
+                <div id="text-story" class="text-story border-black padding-1p"></div>
+            </article>
+
+            <article id="article-2" class="top-margin-30">
+
+            </article>
+
+        </div>
+
+
+    </main>
+
+
+
+    <footer>
+        <p class="no-top-margin no-bottom-margin">Copyright © 2022 Quotip. All rights reserved</p>
+    </footer>
+
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="js/function.js"></script>
+    <script>
+
+
+        var session_username = localStorage.getItem("username");
+        if (session_username != "" && session_username != null) {
+            var left_nav = document.getElementById("left-nav").innerHTML;
+            left_nav += '<li><a href="history.html">History</a></li>';
+            document.getElementById("left-nav").innerHTML = left_nav;
+
+            var right_nav = document.getElementById("right-nav");
+            right_nav.innerHTML = "<li><a>Hello, " + session_username + "</a></li>" +
+                "<li><a href='login.html' onclick='Logout()'>Logout</a></li>";
+
+            var session_user_id = localStorage.getItem("user_id");
+
+            var arrParam = location.search.split("?id=");
+            var history_id = arrParam[1];
+
+            GetHistoryDetail(session_user_id, history_id).then(response => response.json()).then(result => {
+                if (result.message != "OK") {
+                    alert(result.message);
+                }
+                else {
+
+                    var story = result.stories;
+                    document.getElementById("text-quotes").innerHTML = story.quote.quote_text;
+                    document.getElementById("text-story").innerHTML = story.story_text;
+
+                    if (story.activity != null) {
+
+                        var activity = '<div id="act-container" class="flex-container-row align-items-center justify-content-center">';
+
+                        story.activity.forEach(element => {
+                            
+                            var url_img = "";
+                            if(element.url_images == null || element.url_images == "")
+                            {
+                                url_img = "img/question_mark.png";
+                            }
+                            else{
+                                url_img = element.url_images;
+                            }
+
+                            activity += '<div class="quotes-activity flex-container-column align-items-center vertical-padding-5 card ">' +
+                                '<h3>'+element.activity+'</h3>' +
+                                '<img src="'+url_img+'" alt="" class="image-fit-cover ">' +
+                                '</div>'
+                        });
+
+                        activity+= "</div>";
+
+                        document.getElementById("act-container").innerHTML = activity;
+
+                        
+
+
+                    }
+                    else {
+                        document.getElementById("activity-condition").innerHTML = "Here is some activity that you can do to help your mood : <b>Not Found.</b>"
+
+                    }
+
+
+
+                    document.getElementById("history-list").innerHTML = history_list;
+                }
+            });
+
+        }
+        else {
+            alert("Please login first to use 'History Feature.'");
+            window.location.href = 'login.html';
+        }
+
+
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

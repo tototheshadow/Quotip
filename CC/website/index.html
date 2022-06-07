@@ -73,12 +73,15 @@
     </footer>
 
 <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="js/function.js"></script>
 <script>    
 
-    function logout(){
-        localStorage.clear();
-    }
 
+// getUsers().then(result=>result.json()).then(data=>{
+//         alert(data[0].username);
+//     });
+
+    
     var session_username = localStorage.getItem("username");   
     if(session_username != "" && session_username != null)
     {
@@ -88,10 +91,12 @@
 
         var right_nav = document.getElementById("right-nav");
         right_nav.innerHTML = "<li><a>Hello, "+session_username+"</a></li>" +
-                              "<li><a href='login.html' onclick='logout()'>Logout</a></li>";
+                              "<li><a href='login.html' onclick='Logout()'>Logout</a></li>";
 
 
     }
+
+    
 </script>
 
    

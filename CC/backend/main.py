@@ -8,12 +8,28 @@ from passlib.context import CryptContext
 from starlette.responses import JSONResponse
 from starlette.status import HTTP_201_CREATED,HTTP_404_NOT_FOUND
 from db import create_db_and_tables, engine
+from fastapi.middleware.cors import CORSMiddleware
 import models
 
 app = FastAPI()
 def get_session():
     with Session(engine) as session:
         yield session
+
+origins = [    
+    "http://localhost",
+    "http://localhost:8080",
+    "",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 class Hasher():
