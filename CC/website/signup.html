@@ -10,7 +10,7 @@
 
     <link rel="icon" href="img/quotip_logo.png" type="image/x-icon">
     <link rel="stylesheet" href="style/main-style.css">
-    <!-- <link rel="stylesheet" href="style/login-style.css"> -->
+
 </head>
 
 <body>
@@ -36,8 +36,7 @@
 
     <main class="top-margin-30">
         <div id="main-content" class="flex-container-column align-items-center ">
-            <!-- <button id="but" class="but">Show</button> -->
-            <!-- <div id="modal-login" class="modal flex-container-column justify-content-center align-items-center article">       -->
+           
             <div action=""
                 class="modal-content bottom-margin-30 login-signup flex-container-column align-items-center justify-content-center">
 
@@ -56,7 +55,7 @@
                 <a href="login.html">Already have account? Go Login.</a>
             </div>
 
-            <!-- </div> -->
+
 
             <article class="article-2 top-margin-30">
 
@@ -85,15 +84,6 @@
         var session_username = localStorage.getItem("username");
         if (session_username != "" && session_username != null) {
             Logout();
-            // var left_nav = document.getElementById("left-nav").innerHTML;
-            // left_nav += '<li><a href="history.html">History</a></li>';
-            // document.getElementById("left-nav").innerHTML = left_nav;
-
-            // // var right_nav = document.getElementById("right-nav");
-            // // right_nav.innerHTML = "<li><a>Hello "+session_username+"</a></li>" +
-            // //                       "<li><a href='login.html' onclick='logout()'>Logout</a></li>";
-
-
         }
 
         $("#button-signup").on("click", function () {
