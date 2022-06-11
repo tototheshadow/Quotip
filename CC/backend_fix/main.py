@@ -3,9 +3,8 @@ from fastapi import FastAPI, HTTPException, Depends, Query
 from sqlmodel import Session, Field, select, func
 from passlib.context import CryptContext
 from starlette.responses import JSONResponse
-from db import create_db_and_tables, make_quotes, create_tags, create_activities, engine
+from db import create_db_and_tables, create_quotes, create_tags, engine
 import dbmod
-import random
 import pickle
 import numpy as np
 import tensorflow as tf
@@ -41,11 +40,8 @@ class Hasher():
 @app.on_event("startup")
 def on_startup():
     create_db_and_tables()
-    #UNCOMMENT HANYA SAAT PERTAMA KALI MENJALANKAN DI DATABASE BARU UNTUK INSISIALISASI DATA. JIKA DATABASE SUDAH TERISI DATANYA, SEGERA DI COMMENT LAGI
+    #create_quotes()
     #create_tags()
-    #make_quotes()
-    #create_activities()
-    
 
 @app.post("/register", response_model=dbmod.UserReturnRegister)
 def register_user(*, session: Session = Depends(get_session), user: dbmod.UserRegister):
@@ -60,17 +56,6 @@ def register_user(*, session: Session = Depends(get_session), user: dbmod.UserRe
     session.refresh(db_user)
     return dbmod.UserReturnRegister(message="OK", id=db_user.id)
 
-@app.post("/login/")
-def user_login(*, session: Session = Depends(get_session), user: dbmod.UserLogin):
-    opr = select(dbmod.User).where(dbmod.User.username == user.username)
-    user_found =  session.exec(opr).first()
-    if not user_found:
-        return JSONResponse(status_code=401, content={"message":"Invalid username and/or password"})
-    check_password = Hasher.verify_password(user.password, user_found.hashed_password)
-    if not check_password:
-        return JSONResponse(status_code=401, content={"message":"Invalid username and/or password"})
-    return dbmod.UserReturnRegister(message="OK", id=user_found.id)
-
 @app.get("/users", response_model=List[dbmod.UserGet])
 def get_users(*, session: Session = Depends(get_session)):
     users = session.exec(select(dbmod.User)).all()
@@ -83,9 +68,20 @@ def get_a_user(*, session: Session = Depends(get_session), user_id):
         raise HTTPException(status_code=404, detail="User not found")
     return user
 
+@app.post("/login/")
+def user_login(*, session: Session = Depends(get_session), user: dbmod.UserLogin):
+    opr = select(dbmod.User).where(dbmod.User.username == user.username)
+    user_found =  session.exec(opr).first()
+    if not user_found:
+        return JSONResponse(status_code=401, content={"message":"Invalid username and/or password"})
+    check_password = Hasher.verify_password(user.password, user_found.hashed_password)
+    if not check_password:
+        return JSONResponse(status_code=401, content={"message":"Invalid username and/or password"})
+    return dbmod.UserReturnRegister(message="OK", id=user_found.id)
 
-@app.post("/post/story/{user_id}", response_model=dbmod.StoryPostReturn)
-def post_story(*, session: Session = Depends(get_session), user_id, story: dbmod.StoryRegister, qtags: List[int] = Query(...)):
+
+@app.post("/user/{user_id}/story", response_model=dbmod.StoryPostReturn)
+def post_story(*, session: Session = Depends(get_session), story: dbmod.StoryRegister, user_id, qtags: Union[List[int], None] = Query(default=None)):
     with open('tokenizer.pickle', 'rb') as handle:
         Tokenizer = pickle.load(handle)
 
@@ -114,30 +110,18 @@ def post_story(*, session: Session = Depends(get_session), user_id, story: dbmod
         emotion = 'love'
     else :
         emotion = 'surprise'
-    
-    db_story = dbmod.Story(user_id=user_id,story_text=story.story_text)
-    taglist = []
-    for i, q in enumerate(qtags): #Append Story Tags
-        taglist.append(session.get(dbmod.Tag, q))
-        db_story.tags.append(taglist[i])
-        
-    if len(qtags) != 1: #If has multiple tags, choose one tag randomly to choose quote
-        n = random.randint(0,2)
-    else:
-        n = 0
-        
-    quotez = session.exec(select(dbmod.Quote).where(dbmod.Quote.category == emotion).order_by(func.random())).all()
-    for qtz in quotez: #Append Quote with matching Tag to Story
-        for tgz in qtz.tags:
-            if tgz.id == qtags[n]:
-                db_story.quote_id = qtz.id
-    
-    act = [] #Append Activities
-    c_act = random.sample(range(1,5), 3)
-    for i, t in enumerate(c_act):
-        act.append(session.get(dbmod.Activity, t))
-        db_story.activities.append(act[i])
 
+    db_story = dbmod.Story(user_id=user_id, story_text=story.story_text)
+    if qtags:
+        taglist = []
+        for i, q in enumerate(qtags):
+            taglist.append(session.get(dbmod.Tag, q))
+            db_story.tags.append(taglist[i])
+        quotez = session.exec(select(dbmod.Quote).where(dbmod.Quote.category == emotion).order_by(func.random())).all()
+        for qtz in quotez:
+            for tgz in qtz.tags:
+                if tgz.id == qtags[0]:
+                    db_story.quote_id = qtz.id
     session.add(db_story)
     session.commit()
     session.refresh(db_story)
@@ -154,3 +138,82 @@ def get_user_stories(*, session: Session = Depends(get_session), user_id, story_
             return JSONResponse(status_code=404, content={"message":"No detailed story was found"})
         return dbmod.StoryReturnDetailed(message="OK", stories=story_detailed)
     return dbmod.StoryReturn(message="OK", stories=user.stories)
+
+@app.get("/story/{story_id}", response_model=dbmod.StoryGetWithoutUser)
+def get_story(*, session: Session = Depends(get_session), story_id):
+    story = session.get(dbmod.Story, story_id)
+    if not story:
+        raise HTTPException(status_code=404, detail="This aren't the story you're looking for")
+    return story
+
+
+@app.post("/story/{story_id}/quote", response_model=dbmod.QuoteGetWithoutStories)
+def post_quote(*, session: Session = Depends(get_session), quote: dbmod.QuoteCreate, story_id):
+    db_quote = dbmod.Quote(quote_text=quote.quote_text)
+    db_story = session.get(dbmod.Story, story_id)
+    if not db_story:
+        raise HTTPException(status_code=404, detail="Story not found")
+    db_story.quote_id = story_id
+    session.add(db_quote)
+    session.commit()
+    session.refresh(db_quote)
+    session.add(db_story)
+    session.commit()
+    session.refresh(db_story)
+    return db_quote
+
+@app.get("/quote", response_model=List[dbmod.QuoteGet])
+def get_quotes(*, session: Session = Depends(get_session)):
+    quotes = session.exec(select(dbmod.Quote)).all()
+    return quotes
+
+@app.get("/quote/{quote_id}", response_model=dbmod.QuoteGetWithoutStories)
+def get_quote(*, session: Session = Depends(get_session), quote_id):
+    quote = session.get(dbmod.Quote, quote_id)
+    if not quote:
+        raise HTTPException(status_code=404, detail="Quote not found")
+    return quote
+
+
+@app.post("/post/activity", response_model=dbmod.Activity)
+def post_activity(*, session: Session = Depends(get_session), activity: dbmod.ActivityCreate):
+    opr = select(dbmod.Activity)
+    activities = session.exec(opr).all()
+    if any(x.activity == activity.activity for x in activities):
+        raise HTTPException(status_code=400, detail='Activity already exist')
+    db_activity = dbmod.Activity(activity=activity.activity)
+    session.add(db_activity)
+    session.commit()
+    session.refresh(db_activity)
+    return db_activity
+
+
+@app.patch("/patch/story/{story_id}", response_model=dbmod.StoryGetHistory)
+def patch_story(*, session: Session = Depends(get_session), story_id, activity_id: int):
+    patch_story = session.get(dbmod.Story, story_id)
+    activ = session.get(dbmod.Activity, activity_id)
+    if not patch_story or not activ:
+        raise HTTPException(status_code=404, detail="This aren't the story/activity you're looking for")
+    patch_story.activities.append(activ)
+    session.add(patch_story)
+    session.commit()
+    session.refresh(patch_story)
+    return patch_story
+
+
+@app.post("/post/tag", response_model=dbmod.Tag)
+def post_tag(*, session: Session = Depends(get_session), tag: dbmod.TagCreate):
+    opr = select(dbmod.Tag)
+    tags = session.exec(opr).all()
+    if any(x.tag == tag.tag for x in tags):
+        raise HTTPException(status_code=400, detail='Tag already exist')
+    db_tag = dbmod.Tag(tag=tag.tag)
+    session.add(db_tag)
+    session.commit()
+    session.refresh(db_tag)
+    return db_tag
+
+@app.get("/get/tag", response_model=List[dbmod.Tag])
+def get_tags(*, session: Session = Depends(get_session)):
+    tags = session.exec(select(dbmod.Tag)).all()
+    return tags
