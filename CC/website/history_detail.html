@@ -135,22 +135,16 @@
                     document.getElementById("text-quotes").innerHTML = story.quote.quote_text;
                     document.getElementById("text-story").innerHTML = story.story_text;
 
-                    if (story.activity != null) {
+                    if (story.activities != null) {
 
                         var activity = '<div id="act-container" class="flex-container-row align-items-center justify-content-center">';
 
-                        story.activity.forEach(element => {
+                        story.activities.forEach(element => {
                             
-                            var url_img = "";
-                            if(element.url_images == null || element.url_images == "")
-                            {
-                                url_img = "img/question_mark.png";
-                            }
-                            else{
-                                url_img = element.url_images;
-                            }
+                            var url_img = "https://storage.googleapis.com/quotip-activity-img/activity_img/" + element.activity + ".jpg";
+                           
 
-                            activity += '<div class="quotes-activity flex-container-column align-items-center vertical-padding-5 card ">' +
+                            activity += '<div class="horizontal-margin-5 quotes-activity flex-container-column align-items-center vertical-padding-5 card ">' +
                                 '<h3>'+element.activity+'</h3>' +
                                 '<img src="'+url_img+'" alt="" class="image-fit-cover ">' +
                                 '</div>'
@@ -158,7 +152,7 @@
 
                         activity+= "</div>";
 
-                        document.getElementById("act-container").innerHTML = activity;
+                        document.getElementById("activity-condition").innerHTML = activity;
 
                         
 

@@ -61,8 +61,8 @@
                 <div id="activity-place">
 
 
-
                 </div>
+
             </article>
 
             <article id="story" class="flex-container-column justify-content-center top-margin-30">
@@ -76,7 +76,8 @@
                     </div>
 
                 </div>
-                <button class="green-button top-margin-15 bottom-margin-30" onclick="SendStory()">Tell Your Story</button>
+                <button class="green-button top-margin-15 bottom-margin-30" onclick="SendStory()">Tell Your
+                    Story</button>
             </article>
 
 
@@ -96,23 +97,21 @@
     <script type="text/javascript" src="js/function.js"></script>
     <script>
 
-        var tag_list_place = document.getElementById("tag-list");
-        var tagArr = [];
-        var str = "";
+
         var tag_count = 0;
         var tag_send_arr = [];
+        var str = "";
+        var tag_list_place = document.getElementById("tag-list");
 
-        for (let i = 0; i <= 10; i++) {
-            tagArr.push("tag" + i);
-        }
+        GetAllTag().then(response => response.json()).then(result => {
 
-        tagArr.forEach(item => {
-            str += '<input type="checkbox" class="tag" id="' + item + '" name="' + item + '" value="' + item + '">' +
-                '<label class="right-margin-15 " for="' + item + '"> ' + item + '</label>  ';
+            result.forEach(item => {
+                str += '<input type="checkbox" class="tag" id="' + item.tag + '" name="' + item.tag + '" value="' + item.id + '">' +
+                    '<label class="right-margin-15 " for="' + item.tag + '"> ' + item.tag + '</label>  ';
+            });
+
+            tag_list_place.innerHTML = str;
         });
-
-        tag_list_place.innerHTML = str;
-
 
 
         var session_username = localStorage.getItem("username");
@@ -124,75 +123,84 @@
             var right_nav = document.getElementById("right-nav");
             right_nav.innerHTML = "<li><a>Hello, " + session_username + "</a></li>" +
                 "<li><a href='login.html' onclick='Logout()'>Logout</a></li>";
-        }
+        };
 
         var session_user_id = localStorage.getItem("user_id");
 
         if (session_user_id == "" || session_user_id == null) {
-            session_user_id = "";
-        }
+            session_user_id = "10";
+        };
 
         function SendStory() {
-            var user_story = document.getElementById("text-story").value;
-            TellStory(session_user_id, user_story).then(response => response.json()).then(result => {
-                if (result.message != "OK") {
-                    alert(result.message);
-                }
-                else {
-
-                    document.getElementById('text-qutoes').innerHTML = result.quote_text;
-                    if (result.activity != null) {
-
-                        var activity = '<div id="act-container" class="flex-container-row align-items-center justify-content-center">';
-
-                        result.activity.forEach(element => {
-
-                            var url_img = "";
-                            if (element.url_images == null || element.url_images == "") {
-                                url_img = "img/question_mark.png";
-                            }
-                            else {
-                                url_img = element.url_images;
-                            }
-
-                            activity += '<div class="quotes-activity flex-container-column align-items-center vertical-padding-5 card ">' +
-                                '<h3>' + element.activity + '</h3>' +
-                                '<img src="' + url_img + '" alt="" class="image-fit-cover ">' +
-                                '</div>'
-                        });
-
-                        activity += "</div>";
-                        var act_div1 = '<div class=" top-margin-30 bottom-margin-30 font-comic font-size-35  flex-container-column align-items-center">' +
-                            '<span id="activity-condition" class="font-size-2vw">Here is some activity that you can do to help your mood : </span></div>';
-
-                        document.getElementById("act-container").innerHTML = act_div1 + activity;
+            if (tag_count < 1) {
+                alert("Must choose at leat 1 tag!");
+            }
+            else {
+                var user_story = document.getElementById("text-story").value;
+                var tag_query = "";
+                var count = 0;
+                tag_send_arr.forEach(tag => {
+                    tag_query += "qtags=" + tag;
+                    count += 1;
+                    if (count != tag_send_arr.length) {
+                        tag_query += "&";
+                    }
+                });
+                TellStory(session_user_id, user_story, tag_query).then(response => response.json()).then(result => {
+                    if (result.message != "OK") {
+                        alert(result.message);
                     }
                     else {
-                        var act_div2 = '<div class=" top-margin-30 bottom-margin-30 font-comic font-size-35  flex-container-column align-items-center">' +
-                            '<span id="activity-condition" class="font-size-2vw">Here is some activity that you can do to help your mood : </span></div>';
 
-                        document.getElementById("act-container").innerHTML = act_div2;
+                        var hasil = result.story;
 
-                    }
+                        document.getElementById('text-quotes').innerHTML = hasil.quote.quote_text;
+                        if (hasil.activities != null) {
+
+                            var activity = '<div id="act-container" class="flex-container-row align-items-center justify-content-center">';
+
+                            hasil.activities.forEach(element => {
+
+                                var url_img = "https://storage.googleapis.com/quotip-activity-img/activity_img/" + element.activity + ".jpg";
+
+                                activity += '<div class="quotes-activity flex-container-column align-items-center vertical-padding-5 card ">' +
+                                    '<h3>' + element.activity + '</h3>' +
+                                    '<img src="' + url_img + '" alt="" class="image-fit-cover ">' +
+                                    '</div>'
+                            });
+
+                            activity += "</div>";
+                            var act_div1 = '<div class=" top-margin-30 bottom-margin-30 font-comic font-size-35  flex-container-column align-items-center">' +
+                                '<span id="activity-condition" class="font-size-2vw">Here is some activity that you can do to help your mood : </span></div>';
+
+                            document.getElementById("activity-place").innerHTML = act_div1 + activity;
+                        }
+                        else {
+                            var act_div2 = '<div class=" top-margin-30 bottom-margin-30 font-comic font-size-35  flex-container-column align-items-center">' +
+                                '<span id="activity-condition" class="font-size-2vw">Here is some activity that you can do to help your mood : Not Found</span></div>';
+
+                            document.getElementById("activity-place").innerHTML = act_div2;
+
+                        };
 
 
 
-                }
-            });
+                    };
+                });
+            };
+        };
 
 
-        }
-
-        $(".tag").on("click", function () {
-
+        $(document).on('click', '.tag', function () {
             var con = $(this).prop("checked");
 
+
             if (con == false) {
-                tag_count -= 1;               
+                tag_count -= 1;
                 var removed_idx = tag_send_arr.indexOf($(this).val());
                 if (removed_idx != -1) {
                     tag_send_arr.splice(removed_idx, 1);
-                }                
+                }
             }
             else {
                 tag_count += 1;
@@ -204,10 +212,9 @@
                 $(this).prop("checked", false);
                 tag_count -= 1
             }
+
+
         });
-        
-
-
 
 
 

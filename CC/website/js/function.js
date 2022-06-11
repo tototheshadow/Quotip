@@ -1,5 +1,5 @@
 
-const api_url = "http://127.0.0.1:8000/";
+const api_url = "http://34.101.44.89:8000/";
 
 // async function getUsers() {
 //     const response = await fetch(api_url + "users");
@@ -55,8 +55,9 @@ async function Register(uname,psw) {
 
 }
 
-async function TellStory(user_id,story) {
-    var response = await fetch(api_url + "user/ " + user_id + "/story", {
+async function TellStory(user_id,story,tag) {    
+
+    var response = await fetch(api_url + "post/story/" + user_id + "?" + tag, {
         method: "POST",
         body: JSON.stringify({
             story_text: story,
@@ -89,6 +90,14 @@ async function GetAllHistory(user_id) {
     });
     // const data = await response.json();
     // console.log(data);
+    return response;
+}
+
+async function GetAllTag() {
+    var response = await fetch(api_url+"get/tag",{
+        method:"GET",
+    });
+
     return response;
 }
 

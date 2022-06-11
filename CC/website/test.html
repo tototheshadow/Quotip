@@ -19,43 +19,16 @@
     <div style="flex-grow: 3;flex-wrap: wrap;" class="background-blue flex-container-row flex-base-1">
     <input type="checkbox" id="tag1" name="tag1" value="tag1">
     <label for="tag1"> Tag1</label><br>
-    <input type="checkbox" id="tag1" name="tag1" value="tag1">
+    <input type="checkbox" class="tag" id="tag1" name="tag1" value="tag1">
     <label for="tag1"> Tag1</label><br>
-    <input type="checkbox" id="tag1" name="tag1" value="tag1">
+    <input type="checkbox" class="tag" id="tag1" name="tag1" value="tag1">
+    <label for="tag1"> Tag1</label><br> 
+    <input type="checkbox" class="tag" id="tag1" name="tag1" value="tag1">
+    <label for="tag1"> Tag1</label><br> 
+    <input type="checkbox" class="tag" id="tag1" name="tag1" value="tag1">
+    <label for="tag1"> Tag1</label><br> 
+    <input type="checkbox" class="tag" id="tag1" name="tag1" value="tag1">
     <label for="tag1"> Tag1</label><br>
-    <input type="checkbox" id="tag1" name="tag1" value="tag1">
-    <label for="tag1"> Tag1</label><br>
-    <input type="checkbox" id="tag1" name="tag1" value="tag1">
-    <label for="tag1"> Tag1</label><br>
-    <input type="checkbox" id="tag1" name="tag1" value="tag1">
-    <label for="tag1"> Tag1</label><br>
-    <input type="checkbox" id="tag1" name="tag1" value="tag1">
-    <label for="tag1"> Tag1</label><br>
-    <input type="checkbox" id="tag1" name="tag1" value="tag1">
-    <label for="tag1"> Tag1</label><br>
-    <input type="checkbox" id="tag1" name="tag1" value="tag1">
-    <label for="tag1"> Tag1</label><br>
-    <input type="checkbox" id="tag1" name="tag1" value="tag1">
-    <label for="tag1"> Tag1</label><br>
-    <input type="checkbox" id="tag1" name="tag1" value="tag1">
-    <label for="tag1"> Tag1</label><br>
-    <input type="checkbox" id="tag1" name="tag1" value="tag1">
-    <label for="tag1"> Tag1</label><br>
-    <input type="checkbox" id="tag1" name="tag1" value="tag1">
-    <label for="tag1"> Tag1</label><br>
-    <input type="checkbox" id="tag1" name="tag1" value="tag1">
-    <label for="tag1"> Tag1</label><br>
-    <input type="checkbox" id="tag1" name="tag1" value="tag1">
-    <label for="tag1"> Tag1</label><br>
-    <input type="checkbox" id="tag1" name="tag1" value="tag1">
-    <label for="tag1"> Tag1</label><br>
-    <input type="checkbox" id="tag1" name="tag1" value="tag1">
-    <label for="tag1"> Tag1</label><br>
-    <input type="checkbox" id="tag1" name="tag1" value="tag1">
-    <label for="tag1"> Tag1</label><br>
-    <input type="checkbox" id="tag1" name="tag1" value="tag1">
-    <label for="tag1"> Tag1</label><br>
-
     
     
     </div>
@@ -63,17 +36,26 @@
 </div>
 
   <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
-  <script type="text/javascript" src="js/function.js"></script>
+  <!-- <script type="text/javascript" src="js/function.js"></script> -->
   <script>
    
-    
+    $(".tag").on("click",function(){
+      alert('asd');
+    });
    
   //  GetAllHistory().then(response => response.json()).then(value => console.log(value));
     
      
+  async function getUsers() {
+    const response = await fetch("http://34.101.44.89:8000/users");    
     
+    return response;    
+}
+
+
+// getUsers().then(response => response.json()).then(value => console.log(value));
     
-    
+
 
     // const api_url = "http://127.0.0.1:8000/";
 
