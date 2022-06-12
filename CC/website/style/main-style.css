@@ -1,76 +1,76 @@
 @import url('https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Comic+Neue:wght@300&family=Nanum+Pen+Script&family=Work+Sans:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap&family=Dancing+Script&family=Montserrat+Alternates&family=Dongle:wght@300&family=Indie+Flower&display=swap');
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
 
 
-/* body{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    
-} */
+
 
 body {
     font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
 
 }
 
-header{
-    background-color: crimson;  
-    align-items: center;
+header {
+    background-color: crimson;
     position: sticky;
-    top:0;  
-    height: 65px;   
+    top: 0;
+    /* height: 65px;    */
 
 }
 
-header img{
+.img-logo {
     width: 70%;
     height: 70%;
+
 }
 
-header a{
+header a {
     text-decoration: none;
     color: white;
 }
 
-nav ul{
+nav ul {
     list-style: none;
     align-items: center;
     font-size: 20px;
 }
 
-nav{
+nav {
     float: left;
 }
 
 
-nav ul li{
+nav ul li {
     display: inline;
     margin-right: 2vw;
 }
 
-nav a:hover{
+nav a:hover {
     font-weight: bold;
     color: yellow;
 }
 
-body{
+body {
     margin: 0;
 }
 
 footer {
-    padding: 20px;
+    padding: 20px 0px;
     font-size: 20px;
     width: 100%;
     font-weight: bold;
     color: white;
     background-color: crimson;
     text-align: center;
-   
-  
 
-    
- }
 
- .green-button {
+
+
+}
+
+.green-button {
     background-color: #04AA6D;
     color: white;
     padding: 14px 20px;
@@ -78,32 +78,33 @@ footer {
     border: none;
     cursor: pointer;
     width: 100%;
-  }
+}
 
-  button:hover {
+button:hover {
     opacity: 0.8;
-  }
+}
 
-  input[type=text], input[type=password] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-  }
- 
+input[type=text],
+input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
 
 /* COLOR -------------------------------------------------------------------------------*/
 
-.color-white{
+.color-white {
     color: white;
-    
+
 }
 
-.color-green{
+.color-green {
     color: #04AA6D;
-    
+
 }
 
 /*--------------------------------------------------------------------------------------*/
@@ -111,96 +112,100 @@ footer {
 
 /* MARGIN + PADDING + WIDTH ------------------------------------------------------------------*/
 
-.horizontal-margin-5{
-    margin:0 5px 0;    
+.horizontal-margin-5 {
+    margin: 0 5px 0;
 }
 
 
-.left-margin-15{
+.left-margin-15 {
     margin-left: 15px;
-    
+
 }
 
-.right-margin-15{
+.right-margin-15 {
     margin-right: 15px;
 }
 
-.right-margin-25{
+.right-margin-25 {
     margin-right: 25px;
 }
 
-.no-top-margin{
+.no-top-margin {
     margin-top: 0px;
 }
 
-.top-margin-15{
-    margin-top: 15px;    
+.top-margin-15 {
+    margin-top: 15px;
 }
 
-.top-margin-30{
+.top-margin-30 {
     margin-top: 30px;
 }
 
-.top-margin-10p{
+.top-margin-10p {
     margin-top: 10%;
 }
 
-.bottom-margin-15{
-    margin-bottom: 15px;    
+.bottom-margin-15 {
+    margin-bottom: 15px;
 }
 
-.bottom-margin-20{
-    margin-bottom: 20px;    
+.bottom-margin-20 {
+    margin-bottom: 20px;
 }
 
-.bottom-margin-30{
-    margin-bottom: 30px;    
+.bottom-margin-30 {
+    margin-bottom: 30px;
 }
 
 
-.no-bottom-margin{
+.no-bottom-margin {
     margin-bottom: 0px;
 }
 
-.width-100{
+.width-100 {
     width: 100%;
 }
 
-.width-75{
+.width-75 {
     width: 75%;
 }
 
 
 
-.left-padding-15{
-    padding-left: 15px ;
+.left-padding-15 {
+    padding-left: 15px;
 }
 
-.right-padding-15{
-    padding-right: 15px ;
+.right-padding-15 {
+    padding-right: 15px;
 }
 
-.vertical-padding-5{
+.vertical-padding-5 {
     padding: 5px 0 5px;
 }
 
-.padding-1p{
+.padding-1p {
     padding: 1%;
+}
+
+.padding-2p {
+    padding: 2%;
 }
 
 /*--------------------------------------------------------------------------------------*/
 
 /* Text Align  ------------------------------------------------------------------*/
 
-.text-align-left{
+.text-align-left {
     text-align: left;
 }
 
-.text-align-center{
+.text-align-center {
     text-align: center;
 }
 
-.text-align-justify{
+.text-align-justify {
     text-align: justify;
 }
 
@@ -208,131 +213,136 @@ footer {
 
 
 /* FLEX  ------------------------------------------------------------------*/
-.flex-container-column{
+.flex-container-column {
     display: flex;
     flex-direction: column;
 }
 
-.flex-container-row{
+.flex-container-row {
     display: flex;
-    flex-direction: row;    
+    flex-direction: row;
 }
 
-.flex-wrap{
+.flex-wrap {
     flex-wrap: wrap;
 }
 
-.flex-grow-1{
+.flex-grow-1 {
     flex-grow: 1;
 }
 
-.flex-grow-2{
+.flex-grow-2 {
     flex-grow: 2;
 }
 
-.flex-grow-3{
+.flex-grow-3 {
     flex-grow: 3;
 }
 
-.flex-base-1{
+.flex-base-1 {
     flex-basis: 1;
 }
 
-.flex-base-3{
+.flex-base-3 {
     flex-basis: 3;
 }
 
 
 
-.justify-content-center{
+.justify-content-center {
     justify-content: center;
 }
 
-.justify-content-start{
+.justify-content-start {
     justify-content: start;
 }
 
 
-.justify-content-end{
+.justify-content-end {
     justify-content: end;
 }
 
-.align-items-center{
+.align-items-center {
     align-items: center;
 }
 
-.align-items-start{
+.align-items-start {
     align-items: start;
 }
 
-.align-items-end{
+.align-items-end {
     align-items: end;
 }
 
 /*--------------------------------------------------------------------------------------*/
 
-.quotes-activity{
+.quotes-activity {
     border: 2px rgba(0, 0, 0, 0.664) solid;
     box-sizing: border-box;
-    width: 33%;   
+    width: 30%;
     flex-basis: 1;
 }
 
-.history-item{
+.history-item {
     border: 2px rgba(0, 0, 0, 0.664) solid;
     box-sizing: border-box;
-    width: 100%;    
-    padding: 0 15px 0;  
-    
+    width: 100%;
+    padding: 0 15px 0;
+
 }
 
 .card {
     box-shadow: 0 0 10px 0 rgba(3, 3, 3, 0.452);
-    border-radius: 10px;   
-    
- }
+    border-radius: 10px;
 
-.story{
+}
+
+.story {
     resize: vertical;
     font-family: 'Comic Neue';
-    font-size: 20px; 
+    font-size: 20px;
     text-align: justify;
 }
 
-.quotes{
-    font-family: "Indie Flower"; 
-    resize: vertical; 
+.quotes {
+    font-family: "Indie Flower";
+    resize: vertical;
     text-align: center;
     margin: 0 5px 0;
 }
 
-.line-object{
-    background-color: black; width: 100%; height: 3px;
+.line-object {
+    background-color: black;
+    width: 100%;
+    height: 3px;
 }
 
-.a-no-style{
-    
+.a-no-style {}
+
+.ul-no-style {
+    list-style: none;
 }
 
-.ul-no-style{
-    list-style : none;
-}
+.image-fit-cover {
 
-.image-fit-cover {   
-    
     object-fit: contain;
-    object-position: center;    
-    box-sizing: border-box;    
+    object-position: center;
+    box-sizing: border-box;
     border-radius: 8%;
     width: 90%;
 }
 
 
-.image-circle { display: inline-block; position: relative; overflow: hidden; border-radius: 50%; }
+.image-circle {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
 
-.login-signup{
-    
-    
+.login-signup {
+
+
     width: auto;
     padding: 20px;
 }
@@ -341,41 +351,48 @@ footer {
     width: 75%;
 }
 
-.article-2{
+.article-2 {
     background-color: rgb(255, 255, 255);
-    height: 500px;
+    height: 300px;
     width: 100%;
 }
 
 /* FONT --------------------------------------------------------------------------------------*/
 
-.font-comic{
+.font-comic {
     font-family: 'Comic Neue';
 }
 
-.font-bold{
+.font-bold {
     font-weight: bold;
 }
 
-.font-size-2vw{
+.font-size-2vw {
     font-size: 2vw;
 }
 
-.font-size-35{
+.font-size-35 {
     font-size: 35px;
 }
 
-.font-size-20{
+.font-size-25 {
+    font-size: 25px;
+}
+
+.font-size-20 {
     font-size: 20px;
 }
+.font-size-10 {
+    font-size: 10px;
+}
 
-.font-size-100{
-    font-size: 100px;  
+.font-size-100 {
+    font-size: 100px;
 }
 
 
-    
-    
+
+
 
 
 /* -------------------------------------------------------------------------------------------------*/
@@ -383,23 +400,27 @@ footer {
 
 /* COLOR + OPACITY --------------------------------------------------------------------------------------*/
 
-.background-white{
+.background-white {
     background-color: rgb(249, 249, 249);
 }
 
-.background-crimson{
+.background-crimson {
     background-color: rgb(255, 0, 119);
 }
 
-.border-black{
+.border-black {
     border: 0.5px rgba(0, 0, 0, 0.664) solid;
 }
 
-.opacity-90{
+.border-white {
+    border: 0.5px whitesmoke solid;
+}
+
+.opacity-90 {
     opacity: 90%;
 }
 
-.opacity-50{
+.opacity-50 {
     opacity: 50%;
 }
 
@@ -407,8 +428,19 @@ footer {
 /*  --------------------------------------------------------------------------------------*/
 
 
-/* MODAL --------------------------------------------------------------------------------------*/
+/* HEADER --------------------------------------------------------------------------------------*/
 
+#hamburger-nav-top-right {
+    display: none;
+}
+
+#hamburger-menu a:hover {
+    background-color: #403d3e;
+}
+
+#hamburger-menu {
+    display: none;
+}
 
 /*--------------------------------------------------------------------------------------*/
 
@@ -420,66 +452,72 @@ footer {
     text-align: right;
 }
 
-
-#nav-top-right li{
+#nav-top-right li {
     font-weight: bold;
     font-size: 25px;
-
 }
 
+#about-us {
 
-#about-us {  
-    
     width: 75%;
 }
 
-#story{
+#story {
     width: 75%;
 }
 
-#about-us-text{
-    text-align: left;    
+#about-us-text {
+    text-align: left;
 }
 
-#about-us-text p{
+#about-us-text p {
     font-size: 20px;
 }
 
-#about-us-text h2{
+#about-us-text h2 {
     font-size: 30px;
 }
 
+#about-us-image{
+    width: 450px;
+    height: 450px;
+}
 
-#quotes-display {  
-    
+
+#quotes-display {
+
     width: 75%;
 }
 
-#article-2{
+#article-2 {
     background-color: rgb(255, 255, 255);
-    height: 500px;
+    height: 0px;
     width: 100%;
 }
 
-.text-story{
+.text-story {
     resize: vertical;
     font-family: 'Cormorrant Garamond';
-    font-size: 2vw;
+    font-size: 25px;    
 }
 
-#text-quotes{
+#text-quotes {
     font-family: "Indie Flower";
-    font-size: 4vw;
+   font-size: 35px;
 }
 
-#act-container{
-   height: 300px;
+#act-container {
+    height: auto;
 }
 
-.tanda-petik{
-    font-family: 'BIZ UDPGothic';      
+.tanda-petik {
+    font-family: 'BIZ UDPGothic';
 }
 
-.background-blue{
+.background-blue {
     background-color: blue;
+}
+
+.background-black {
+    background-color: #1c1b1b;
 }

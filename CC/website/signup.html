@@ -11,32 +11,70 @@
     <link rel="icon" href="img/quotip_logo.png" type="image/x-icon">
     <link rel="stylesheet" href="style/main-style.css">
 
+    <style>
+        @media screen and (max-width: 1000px) {
+
+            #nav-top-left {
+                display: none;
+            }
+
+            #nav-top-right {
+                display: none;
+            }
+
+            #hamburger-nav-top-right {
+                display: block;
+            }
+
+
+        }
+    </style>
+
 </head>
 
 <body>
 
-    <header class="flex-container-row">
-        <span class="left-margin-15"><img src="img/quotip_logo.png" alt=""></span>
-        <h1 class="color-white"><a href="index.html">Quotip</a></h1>
-        <nav class="width-100" id="nav-top-left">
-            <ul id="left-nav">
-                <li><a href="#about-us">About Us</a></li>
-                <li><a href="quotes.html">Get Quotes</a></li>
-            </ul>
-        </nav>
+    <header class="flex-container-column">
+        <div class="flex-container-row align-items-center">
+            <span class=" left-margin-15"><img src="img/quotip_logo.png" class="img-logo" alt=""></span>
+            <h1 class="color-white"><a href="index.html">Quotip</a></h1>
 
-        <nav class="width-100" id="nav-top-right">
-            <ul id="right-nav" style="display: flex; align-items: flex-end; justify-content: flex-end;">
-                <li><a href="login.html">Login</a></li>
-                <li><a href="signup.html">Sign-Up</a></li>
-            </ul>
-        </nav>
+            <nav class="width-100" id="nav-top-left">
+                <ul id="left-nav">
+                    <li><a href="index.html#about-us">About Us</a></li>
+                    <li><a href="quotes.html">Get Quotes</a></li>
+                </ul>
+            </nav>
 
+            <nav class="width-100 right-margin-15" id="nav-top-right">
+                <ul id="right-nav" style="display: flex; align-items: flex-end; justify-content: flex-end;">
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="signup.html">Sign-Up</a></li>
+                </ul>
+            </nav>
+
+            <nav class="width-100 right-margin-15" id="hamburger-nav-top-right">
+
+                <ul id="hamburger-right-nav" style="display: flex; align-items: flex-end; justify-content: flex-end;">
+                    <li> <a href="javascript:void(0);" class="icon" onclick="Shownav()">
+                            <i class="fa fa-bars"></i>
+                        </a> </li>
+                </ul>
+            </nav>
+
+        </div>
+        <div id="hamburger-menu" class="flex-container-column background-black">
+            <a class="padding-2p" href="index.html#about-us">About Us</a>
+            <a class="padding-2p" href="quotes.html">Get Quotes</a>
+            <a class="padding-2p" href="login.html">Login</a>
+            <a class="padding-2p" href="signup.html">Sign-Up</a>
+
+        </div>
     </header>
 
     <main class="top-margin-30">
         <div id="main-content" class="flex-container-column align-items-center ">
-           
+
             <div action=""
                 class="modal-content bottom-margin-30 login-signup flex-container-column align-items-center justify-content-center">
 
@@ -57,12 +95,10 @@
 
 
 
-            <article class="article-2 top-margin-30">
+            <article class="article-2 ">
 
             </article>
-            <article class="article-2 top-margin-30">
 
-            </article>
 
 
         </div>
@@ -80,11 +116,22 @@
     <script type="text/javascript" src="js/function.js"></script>
     <script>
 
-       
+
+
         var session_username = localStorage.getItem("username");
         if (session_username != "" && session_username != null) {
             Logout();
         }
+
+        function Shownav() {
+            var ham_menu = document.getElementById("hamburger-menu");
+            if (ham_menu.style.display == "flex") {
+                ham_menu.style.display = "none";
+            } else {
+                ham_menu.style.display = "flex";
+            }
+s
+        };
 
         $("#button-signup").on("click", function () {
 
@@ -98,17 +145,17 @@
             }
             else {
 
-                Register(uname,psw).then(response=>response.json()).then(result=>{
-                  if(result.message != "OK"){
-                    alert(result.message);                    
-                  }
-                  else{
-                    alert("Proceed to Login your New Account!");
-                    window.location.href ="login.html";
-                  }
-                });              
-               
-                
+                Register(uname, psw).then(response => response.json()).then(result => {
+                    if (result.message != "OK") {
+                        alert(result.message);
+                    }
+                    else {
+                        alert("Proceed to Login your New Account!");
+                        window.location.href = "login.html";
+                    }
+                });
+
+
 
             }
 

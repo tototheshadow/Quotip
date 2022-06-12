@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,96 +10,170 @@
 
     <link rel="icon" href="img/quotip_logo.png" type="image/x-icon">
     <link rel="stylesheet" href="style/main-style.css">
+    <style>
+        @media screen and (max-width: 1000px) {
+
+            #nav-top-left {
+                display: none;
+            }
+
+            #nav-top-right {
+                display: none;
+            }
+
+            #hamburger-nav-top-right {
+                display: block;
+            }
+
+            #about-us-content {
+                flex-direction: column;
+            }
+
+            #about-us {
+
+                width: 95%;
+            }
+
+            #about-us-image{
+                width: 80%;
+                min-width: 350px;
+                margin-bottom: 10px;
+            }
+
+
+        }
+    </style>
+
 </head>
+
 <body>
-    
-    <header class="flex-container-row">
-        <span class="left-margin-15"><img src="img/quotip_logo.png" alt=""></span>
-        <h1 class="color-white"><a href="index.html">Quotip</a></h1>
-        <nav class="width-100" id="nav-top-left">
-            <ul id="left-nav">
-                <li><a href="#about-us">About Us</a></li>
-                <li><a href="quotes.html">Get Quotes</a></li>    
-            </ul>          
-        </nav>
-        
-        <nav class="width-100" id="nav-top-right">
-            <ul id="right-nav" style="display: flex; align-items: flex-end; justify-content: flex-end;">
-                <li><a href="login.html">Login</a></li>
-                <li><a href="signup.html">Sign-Up</a></li>                   
-            </ul> 
-        </nav>        
-       
+
+    <header class="flex-container-column">
+        <div class="flex-container-row align-items-center">
+            <span class=" left-margin-15"><img src="img/quotip_logo.png" class="img-logo" alt=""></span>
+            <h1 class="color-white"><a href="index.html">Quotip</a></h1>
+
+            <nav class="width-100" id="nav-top-left">
+                <ul id="left-nav">
+                    <li><a href="index.html#about-us">About Us</a></li>
+                    <li><a href="quotes.html">Get Quotes</a></li>
+                </ul>
+            </nav>
+
+            <nav class="width-100 right-margin-15" id="nav-top-right">
+                <ul id="right-nav" style="display: flex; align-items: flex-end; justify-content: flex-end;">
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="signup.html">Sign-Up</a></li>
+                </ul>
+            </nav>
+
+            <nav class="width-100 right-margin-15" id="hamburger-nav-top-right">
+
+                <ul id="hamburger-right-nav" style="display: flex; align-items: flex-end; justify-content: flex-end;">
+                    <li> <a href="javascript:void(0);" class="icon" onclick="Shownav()">
+                            <i class="fa fa-bars"></i>
+                        </a> </li>
+                </ul>
+            </nav>
+
+        </div>
+        <div id="hamburger-menu" class="flex-container-column background-black">
+            <a class="padding-2p" href="index.html#about-us">About Us</a>
+            <a class="padding-2p" href="quotes.html">Get Quotes</a>
+            <a class="padding-2p" href="login.html">Login</a>
+            <a class="padding-2p" href="signup.html">Sign-Up</a>
+
+        </div>
     </header>
-    
-    <main class="top-margin-30">    
+
+    <main class="top-margin-30">
         <div id="main-content" class="flex-container-column align-items-center ">
             <article id="about-us" class="flex-container-column justify-content-center ">
 
-                <div class="line-object"></div> 
+                <div class="line-object"></div>
 
-                <div class="flex-container-row">
+                <div id="about-us-content" class="flex-container-row">
+
                     <div class="flex-grow-2 flex-container-column justify-content-center align-items-center">
                         <div class="text-align-left" id="about-us-text">
                             <h2>Tell Your Story</h2>
                             <p>With our technology, we can help and understand you.
                                 <br>We will learn your story and give you something to motivate you.
-                                <br>Maybe some activity and some quotes for your day :)
+                                <br>
+                                <br>We believe some activity and some quotes for your day
+                                <br> will make you feel better :)
                             </p>
                         </div>
                     </div>
-    
-                    <div class="flex-grow-1 flex-container-row jjustify-content-center align-items-center">
-                        <img src="img/about_us_2.jpg" alt="" width="450px" height="450px" class="image-fit-cover">
+                    <div
+                        class="flex-grow-1 flex-container-row justify-content-center align-items-center right-margin-15">
+                        <img id="about-us-image" src="img/about_us_2.jpg" alt="" class="image-fit-cover">
                     </div>
+
+
                 </div>
 
-                <div class="line-object"></div>   
-                                
-            </article>
-
-            <article id="article-2" class="top-margin-30">
+                <div class="line-object"></div>
 
             </article>
 
-        </div> 
-        
-        
+            <article class="article-2" class="top-margin-30">
+
+            </article>
+
+        </div>
+
+
     </main>
 
-        
+
 
     <footer>
-        <p class="no-top-margin no-bottom-margin">Copyright © 2022 Quotip. All rights reserved.</p>        
+        <p class="no-top-margin no-bottom-margin">Copyright © 2022 Quotip. All rights reserved.</p>
     </footer>
 
-<script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
-<script type="text/javascript" src="js/function.js"></script>
-<script>    
+    <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="js/function.js"></script>
+    <script>
 
 
-// getUsers().then(result=>result.json()).then(data=>{
-//         alert(data[0].username);
-//     });
-
-    
-    var session_username = localStorage.getItem("username");   
-    if(session_username != "" && session_username != null)
-    {
-        var left_nav = document.getElementById("left-nav").innerHTML;
-        left_nav += '<li><a href="history.html">History</a></li>';
-        document.getElementById("left-nav").innerHTML = left_nav;
-
-        var right_nav = document.getElementById("right-nav");
-        right_nav.innerHTML = "<li><a>Hello, "+session_username+"</a></li>" +
-                              "<li><a href='login.html' onclick='Logout()'>Logout</a></li>";
 
 
-    }
+        var session_username = localStorage.getItem("username");
+        if (session_username != "" && session_username != null) {
+            var left_nav = document.getElementById("left-nav").innerHTML;
+            left_nav += '<li><a href="history.html">History</a></li>';
+            document.getElementById("left-nav").innerHTML = left_nav;
 
-    
-</script>
+            var right_nav = document.getElementById("right-nav");
+            right_nav.innerHTML = "<li><a>Hello, " + session_username + "</a></li>" +
+                "<li><a href='login.html' onclick='Logout()'>Logout</a></li>";
 
-   
+            var ham_menu = document.getElementById("hamburger-menu");
+            ham_menu.innerHTML = '<a class="padding-2p" href="index.html#about-us">About Us</a>' +
+                '<a class="padding-2p" href="quotes.html">Get Quotes</a>' +
+                '<a class="padding-2p" href="history.html">History</a>' +
+                '<a class="padding-2p" href="login.html">Login</a>' +
+                '<a class="padding-2p" href="signup.html">Sign-Up</a>';
+
+
+
+        }
+
+        function Shownav() {
+            var ham_menu = document.getElementById("hamburger-menu");
+            if (ham_menu.style.display == "flex") {
+                ham_menu.style.display = "none";
+            } else {
+                ham_menu.style.display = "flex";
+            }
+
+        };
+
+
+    </script>
+
+
 </body>
+
 </html>

@@ -75,7 +75,7 @@ async function TellStory(user_id,story,tag) {
 }
 
 async function GetHistoryDetail(user_id,story_id) {
-    var response = await fetch(api_url + "user/" + user_id + "/stories?story_detailed_id=" + story_id, {
+    var response = await fetch(api_url + "user/" + user_id + "/story/" + story_id, {
         method: "GET",
     });
     // const data = await response.json();

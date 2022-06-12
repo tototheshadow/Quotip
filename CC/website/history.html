@@ -11,46 +11,88 @@
     <link rel="icon" href="img/quotip_logo.png" type="image/x-icon">
     <link rel="stylesheet" href="style/main-style.css">
     <style>
+        @media screen and (max-width: 1000px) {
 
+            #nav-top-left {
+                display: none;
+            }
+
+            #nav-top-right {
+                display: none;
+            }
+
+            #hamburger-nav-top-right {
+                display: block;
+            }
+
+           
+
+            #history-place {
+
+                width: 95%;
+            }
+           
+
+
+        }
     </style>
 </head>
 
 <body>
 
-    <header class="flex-container-row">
-        <span class="left-margin-15"><img src="img/quotip_logo.png" alt=""></span>
-        <h1 class="color-white"><a href="index.html">Quotip</a></h1>
-        <nav class="width-100" id="nav-top-left">
-            <ul id="left-nav">
-                <li><a href="index.html#about-us">About Us</a></li>
-                <li><a href="quotes.html">Get Quotes</a></li>
-            </ul>
-        </nav>
+    <header class="flex-container-column">
+        <div class="flex-container-row align-items-center">
+            <span class=" left-margin-15"><img src="img/quotip_logo.png" class="img-logo" alt=""></span>
+            <h1 class="color-white"><a href="index.html">Quotip</a></h1>
 
-        <nav class="width-100" id="nav-top-right">
-            <ul id="right-nav" style="display: flex; align-items: flex-end; justify-content: flex-end;">
-                <li><a href="login.html">Login</a></li>
-                <li><a href="signup.html">Sign-Up</a></li>
-            </ul>
-        </nav>
+            <nav class="width-100" id="nav-top-left">
+                <ul id="left-nav">
+                    <li><a href="index.html#about-us">About Us</a></li>
+                    <li><a href="quotes.html">Get Quotes</a></li>
+                </ul>
+            </nav>
 
+            <nav class="width-100 right-margin-15" id="nav-top-right">
+                <ul id="right-nav" style="display: flex; align-items: flex-end; justify-content: flex-end;">
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="signup.html">Sign-Up</a></li>
+                </ul>
+            </nav>
+
+            <nav class="width-100 right-margin-15" id="hamburger-nav-top-right">
+
+                <ul id="hamburger-right-nav" style="display: flex; align-items: flex-end; justify-content: flex-end;">
+                    <li> <a href="javascript:void(0);" class="icon" onclick="Shownav()">
+                            <i class="fa fa-bars"></i>
+                        </a> </li>
+                </ul>
+            </nav>
+
+        </div>
+        <div id="hamburger-menu" class="flex-container-column background-black">
+            <a class="padding-2p" href="index.html#about-us">About Us</a>
+            <a class="padding-2p" href="quotes.html">Get Quotes</a>
+            <a class="padding-2p" href="login.html">Login</a>
+            <a class="padding-2p" href="signup.html">Sign-Up</a>
+
+        </div>
     </header>
 
     <main class="top-margin-30">
         <div id="main-content" class="flex-container-column align-items-center">
-            <article id="" class="width-75 flex-container-column justify-content-center">
+            <article id="history-place" class="width-75 flex-container-column justify-content-center">
 
                 <div id="history-list-condition"
                     class="top-margin-30 bottom-margin-30 font-comic font-size-35  flex-container-column align-items-center">
                     Your History List :
                 </div>
                 <div id="history-list" class="flex-container-column align-items-center justify-content-center">
-                   
+
 
                 </div>
 
             </article>
-            
+
 
 
 
@@ -81,6 +123,13 @@
             right_nav.innerHTML = "<li><a>Hello, " + session_username + "</a></li>" +
                 "<li><a href='login.html' onclick='Logout()'>Logout</a></li>";
 
+            var ham_menu = document.getElementById("hamburger-menu");
+            ham_menu.innerHTML = '<a class="padding-2p" href="index.html#about-us">About Us</a>' +
+                '<a class="padding-2p" href="quotes.html">Get Quotes</a>' +
+                '<a class="padding-2p" href="history.html">History</a>' +
+                '<a class="padding-2p" href="login.html">Login</a>' +
+                '<a class="padding-2p" href="signup.html">Sign-Up</a>';
+
             var session_user_id = localStorage.getItem("user_id");
 
             GetAllHistory(session_user_id).then(response => response.json()).then(result => {
@@ -89,13 +138,13 @@
                 }
                 else {
 
-                    var history_list = "";                  
+                    var history_list = "";
 
                     result.stories.forEach(story => {
 
-                        history_list += '<div value="'+story.id+'" class="bottom-margin-20 history-item flex-container-column vertical-padding-5 card">' +
-                           
-                            '<h3><a class="color-green" href="history_detail.html?id='+story.id+'">Detailed History</a></h3>' +
+                        history_list += '<div value="' + story.id + '" class="bottom-margin-20 history-item flex-container-column vertical-padding-5 card">' +
+
+                            '<h3><a class="color-green" href="history_detail.html?id=' + story.id + '">Detailed History</a></h3>' +
                             '<div class="line-object"></div> ' +
                             '<span class="tanda-petik top-margin-15 font-size-35">"</span>' +
                             '<p  class="quotes font-size-35 ">' + story.quote.quote_text + '</p>' +
@@ -110,7 +159,7 @@
                 }
             });
 
-            
+
 
 
         }
@@ -119,7 +168,16 @@
             window.location.href = 'login.html';
         }
 
-           
+        function Shownav() {
+            var ham_menu = document.getElementById("hamburger-menu");
+            if (ham_menu.style.display == "flex") {
+                ham_menu.style.display = "none";
+            } else {
+                ham_menu.style.display = "flex";
+            }
+
+        };
+
 
 
 
