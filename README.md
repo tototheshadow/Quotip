@@ -60,11 +60,12 @@ For interactive documentation, you can run the app by following the instructions
 
 # Machine Learning Model - Documentation
 Training Result:
-![image](https://user-images.githubusercontent.com/83509103/173247850-cff85677-1ea9-4980-8c38-700e1a894244.png)
-![image](https://user-images.githubusercontent.com/83509103/173247899-2c46f646-9303-45a4-87e0-e1ca508bf651.png)
 
+![image](https://user-images.githubusercontent.com/83509103/173247899-2c46f646-9303-45a4-87e0-e1ca508bf651.png)
+![image](https://user-images.githubusercontent.com/83509103/173247850-cff85677-1ea9-4980-8c38-700e1a894244.png)
 
 Testing Trained Model:
+
 model is tested using the statement "i never felt so good" and the model predict 1 to be the highest which is joy.
 ![image](https://user-images.githubusercontent.com/83509103/173247859-0d3a7f9e-7198-45a8-a074-9e8cef6afa05.png)
 
