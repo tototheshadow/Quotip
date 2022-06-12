@@ -27,7 +27,7 @@ Here are a few steps to get our system up and running in your local computer :
 2. **Initial Setup** :
     - Clone our project [Github Repo](https://github.com/tototheshadow/Quotip)
     - Navigate to CC/backend_fix
-    - Modify `db.py` to meet your requirements (Change database link, etc.)
+    - Modify `db.py` to meet your requirements (Change database link, etc.) **yes we know, we know, we know, it is a VERY bad practice. this will be fixed soon**
     - Create Python virtual environment on the folder by using `python3 -m venv env`, and activate the environment running `activate.bat` file on the env file (for Windows)
     - Install the requirements `pip install -r requirements.txt`
     - Run the server with uvicorn `python3 -m uvicorn main:app --reload` (This is enough if you’re just running the API on your local machine)
