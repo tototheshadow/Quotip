@@ -106,3 +106,7 @@ The main feature of the app is it’s **Story feature**. The Story feature in Qu
 
 The backend then gives a response to the story that has been given in the form of **quotes and activities**.
 After doing it for a while, you can see your **old stories** with the **History feature**.
+
+
+
+
