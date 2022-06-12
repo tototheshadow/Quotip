@@ -15,6 +15,14 @@
 
 # Cloud (Backend & Frontend) - Documentation
 ## The Websites
+For the websites, we only need the frontend files and install apache web server in your local computer or the virtual machine.
+
+1. **Install Apache on Linux** :
+    - Sudo apt-get update.
+    - Sudo apt-get install apache.
+    - Apache2 --version (to check if apache web server was installed)
+    - Copy the frontend files from https://github.com/tototheshadow/Quotip/CC/website to the apache place. Which is at "var/html/www/"
+    - Then your website is read to go.
 
 
 
