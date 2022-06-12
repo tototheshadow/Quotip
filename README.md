@@ -3,6 +3,13 @@
  
  A safe place to share your days both good and bad. Quotip is where you can be yourself. Make notes about how your day in detail and see what recommendations are given to you! Quotip will give you a gift in the form of useful quotes and activities adjusting to the story that you tell about your day.
 
+# Cloud (Backend & Frontend) - Documentation
+
+## The Websites
+
+
+
+
 ## Getting Started (API)
 Here are a few steps to get our system up and running in your local computer :
 1. **Prequerities** :
@@ -40,3 +47,28 @@ We integrated the ML solution to our API for easy access. There are 8 Endpoints 
 8. Get all tags
 
 For interactive documentation, you can run the app by following the instructions on the first segment and opening the interactive documentation.
+
+
+# Machine Learning Model - Documentation
+
+
+
+# Mobile App - Documentation
+
+Firstly we plan our **design thinking** methodology by first emphetize what problems can our team tackle and we chose **mental health**, then we define the core problem and brainstorm some great Ideas which eventually got us to Quotip
+One of the first things we do is making a rough **sketches** of the Quotip app in **figma** which is also used by us as a all in one designing tool
+Then we put the designs to the test by making a **low and high fidelity prototypes**. By this point we has already decided that the basic app layout would be a **bottom menu** app with three pages done by using **three fragments**. Each are named **home, history, and settings**.
+Once we are pleased with the designs we then apply them to the app using **kotlin** as what has been required by the **Bangkit Capstone program**.
+In order to fulfill the functions of the app that we originally planned we needed an API and a backend algorithm to give us the responses for each story a user gives us.
+**Quotip Description**
+**Quotip** is the modern app for you who wants a place to share your day. In order to be this there are some key features of the app that are essential to what we planned the app to accomplish in the first place.
+Features we intended the app to have are 5 which are : 
+-Login and Registration
+-Post Story
+-History
+-Settings
+-History Detail with Recommendation Activity
+All of which are using custom APIs.
+The main feature of the app is it’s **Story feature**. The Story feature in Quotip is like most note apps but with it’s content stored and processed by the algorithm on the backend.
+The backend then gives a response to the story that has been given in the form of **quotes and activities**.
+After doing it for a while, you can see your **old stories** with the **History feature**.
