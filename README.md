@@ -18,9 +18,9 @@
 For the websites, we only need the frontend files and install apache web server in your local computer or the virtual machine.
 
 1. **Install Apache on Linux** :
-    - Sudo apt-get update.
-    - Sudo apt-get install apache.
-    - Apache2 --version (to check if apache web server was installed)
+    - run `Sudo apt-get update`
+    - run `Sudo apt-get install apache`
+    - run `Apache2 --version` (to check if apache web server was installed)
     - Copy the frontend files from https://github.com/tototheshadow/Quotip/CC/website to the apache place. Which is at "var/html/www/"
     - Then your website is read to go.
 
@@ -85,9 +85,13 @@ model is tested using the statement "i never felt so good" and the model predict
 
 Firstly we plan our **design thinking** methodology by first emphetize what problems can our team tackle and we chose **mental health**, then we define the core problem and brainstorm some great Ideas which eventually got us to Quotip
 One of the first things we do is making a rough **sketches** of the Quotip app in **figma** which is also used by us as a all in one designing tool
+
 Then we put the designs to the test by making a **low and high fidelity prototypes**. By this point we has already decided that the basic app layout would be a **bottom menu** app with three pages done by using **three fragments**. Each are named **home, history, and settings**.
+
 Once we are pleased with the designs we then apply them to the app using **kotlin** as what has been required by the **Bangkit Capstone program**.
+
 In order to fulfill the functions of the app that we originally planned we needed an API and a backend algorithm to give us the responses for each story a user gives us.
+
 **Quotip Description**
 **Quotip** is the modern app for you who wants a place to share your day. In order to be this there are some key features of the app that are essential to what we planned the app to accomplish in the first place.
 Features we intended the app to have are 5 which are : 
@@ -96,7 +100,9 @@ Features we intended the app to have are 5 which are :
 -History
 -Settings
 -History Detail with Recommendation Activity
+
 All of which are using custom APIs.
 The main feature of the app is it’s **Story feature**. The Story feature in Quotip is like most note apps but with it’s content stored and processed by the algorithm on the backend.
+
 The backend then gives a response to the story that has been given in the form of **quotes and activities**.
 After doing it for a while, you can see your **old stories** with the **History feature**.
