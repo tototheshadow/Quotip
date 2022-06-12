@@ -2,9 +2,18 @@
  BANGKIT Capstone Project
  
  A safe place to share your days both good and bad. Quotip is where you can be yourself. Make notes about how your day in detail and see what recommendations are given to you! Quotip will give you a gift in the form of useful quotes and activities adjusting to the story that you tell about your day.
+			
+
+## Collabolator
+### Google Bangkit 2022 Capstone Project - Quotip (C22-PS016)
+- Christopher Tri Anugrah (C7320F2798) - Cloud Computing -  Universitas Surabaya
+- Nandaffa Rizky Putra (C2004F0360) - Cloud Computing - Institut Teknologi Sepuluh Nopember
+- Billy Renatasiva (M2320F2806) - Machine Learning - Universitas Surabaya
+- Venansius Mario Tando (M2320F2804) - Machine Learning -  Universitas Surabaya
+- Mohammad Ilham (A2004F0380) - Mobile Development - Institut Teknologi Sepuluh Nopember
+- Arshad Tareeq Buchori (A2004N0386) - Mobile Development - Institut Teknologi Sepuluh Nopember
 
 # Cloud (Backend & Frontend) - Documentation
-
 ## The Websites
 
 
