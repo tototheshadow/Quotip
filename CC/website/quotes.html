@@ -197,7 +197,7 @@
 
         function SendStory() {
             if (tag_count < 1) {
-                alert("Must choose at leat 1 tag!");
+                alert("Must choose at least 1 tag!");
             }
             else {
                 var user_story = document.getElementById("text-story").value;
@@ -222,6 +222,10 @@
                         else {
 
                             var hasil = result.story;
+                            if(hasil.quote.quote_text == null)
+                            {
+                                hasil.quote.quote_text = "";
+                            }
 
                             document.getElementById('text-quotes').innerHTML = hasil.quote.quote_text;
                             if (hasil.activities != null) {

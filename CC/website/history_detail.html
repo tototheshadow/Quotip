@@ -189,7 +189,11 @@
                 else {
 
                     var story = result.stories;
-                    document.getElementById("text-quotes").innerHTML = story.quote.quote_text;
+                    var quote = "";
+                    if (story.quote != null) {
+                            quote = story.quote.quote_text;
+                        }
+                    document.getElementById("text-quotes").innerHTML = quote;
                     document.getElementById("text-story").innerHTML = story.story_text;
 
                     if (story.activities != null) {
@@ -198,13 +202,7 @@
 
                         story.activities.forEach(element => {
 
-                            // var url_img = "https://storage.googleapis.com/quotip-activity-img/activity_img/" + element.activity + ".jpg";
-
-
-                            // activity += '<div class="quotes-activity horizontal-margin-5 flex-container-column align-items-center vertical-padding-5 card">' +
-                            //     '<h3>' + element.activity + '</h3>' +
-                            //     '<img src="' + url_img + '" alt="" class="image-fit-cover ">' +
-                            //     '</div>'
+                            
                             var url_img = "https://storage.googleapis.com/quotip-activity-img/activity_img/" + element.activity + ".jpg";
 
                             activity += '<div class="quotes-activity flex-container-column align-items-center vertical-padding-5 card ">' +
