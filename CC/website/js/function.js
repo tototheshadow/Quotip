@@ -1,14 +1,9 @@
 
 const api_url = "http://34.101.44.89:8000/";
 
-// async function getUsers() {
-//     const response = await fetch(api_url + "users");
-//     const data = await response.json();    
-//     return data;
-// }
 
 function Logout(){
-    localStorage.clear();
+    localStorage.clear();    
 }
 
 async function getUsers() {
