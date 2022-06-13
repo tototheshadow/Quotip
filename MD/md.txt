@@ -1,0 +1,3 @@
+To test the app, install app-debug.apk on your phone.
+
+*DISCLAIMER : the apk isn't complete yet*

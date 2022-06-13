@@ -2,7 +2,9 @@
  BANGKIT Capstone Project
  
  A safe place to share your days both good and bad. Quotip is where you can be yourself. Make notes about how your day in detail and see what recommendations are given to you! Quotip will give you a gift in the form of useful quotes and activities adjusting to the story that you tell about your day.
-			
+ 
+Websites : http://34.128.72.111/
+Backend documentation : http://34.101.44.89:8000/redoc			
 
 ## Collaborator
 ### Google Bangkit 2022 Capstone Project - Quotip (C22-PS016)
@@ -83,6 +85,9 @@ model is tested using the statement "i never felt so good" and the model predict
 
 
 # Mobile App - Documentation
+
+To test the mobile app, install app-debug.apk on your phone.
+*DISCLAIMER : the apk isn't complete yet*
 
 Firstly we plan our **design thinking** methodology by first emphetize what problems can our team tackle and we chose **mental health**, then we define the core problem and brainstorm some great Ideas which eventually got us to Quotip
 One of the first things we do is making a rough **sketches** of the Quotip app in **figma** which is also used by us as a all in one designing tool
