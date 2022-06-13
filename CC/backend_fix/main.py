@@ -1,6 +1,7 @@
 from typing import List, Optional, Union
 from fastapi import FastAPI, HTTPException, Depends, Query
-from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware import Middleware
+from starlette.middleware.cors import CORSMiddleware
 from sqlmodel import Session, Field, select, func
 from passlib.context import CryptContext
 from starlette.responses import JSONResponse
@@ -12,22 +13,20 @@ import numpy as np
 import tensorflow as tf
 import re
 
-app = FastAPI(title="Quotip API", version="0.1")
+middleware = [
+    Middleware(
+        CORSMiddleware,
+        allow_origins=['*'],
+        allow_credentials=True,
+        allow_methods=['*'],
+        allow_headers=['*']
+    )
+]
+
+app = FastAPI(title="Quotip API", version="0.1", middleware=middleware)
 def get_session():
     with Session(engine) as session:
         yield session
-
-origins = [    
-    "",
-]
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 def preprocess_text(sen):
     sentence = remove_tags(sen)
@@ -155,17 +154,22 @@ def post_story(*, session: Session = Depends(get_session), user_id, story: dbmod
     session.refresh(db_story)
     return dbmod.StoryPostReturn(message="OK", story=db_story)
 
-@app.get("/user/{user_id}/stories")
-def get_user_stories(*, session: Session = Depends(get_session), user_id, story_detailed_id: int = None):
+@app.get("/user/{user_id}/stories", response_model=dbmod.StoryReturn)
+def get_user_stories(*, session: Session = Depends(get_session), user_id):
+    user = session.get(dbmod.User, user_id)
+    if not user or not user.stories:
+        return JSONResponse(status_code=404, content={"message":"No user story was found"})
+    return dbmod.StoryReturn(message="OK", stories=user.stories)
+
+@app.get("/user/{user_id}/story/{story_id}", response_model=dbmod.StoryReturnDetailed)
+def get_detailed_user_story(*, session: Session = Depends(get_session), user_id, story_id):
     user = session.get(dbmod.User, user_id)
     if not user.stories:
+        return JSONResponse(status_code=404, content={"message":"No user story was found"})
+    story_detailed =  session.get(dbmod.Story, story_id)
+    if not story_detailed or not story_detailed.activities:
         return JSONResponse(status_code=404, content={"message":"No detailed story was found"})
-    if story_detailed_id:
-        story_detailed =  session.get(dbmod.Story, story_detailed_id)
-        if not story_detailed or not story_detailed.activities:
-            return JSONResponse(status_code=404, content={"message":"No detailed story was found"})
-        return dbmod.StoryReturnDetailed(message="OK", stories=story_detailed)
-    return dbmod.StoryReturn(message="OK", stories=user.stories)
+    return dbmod.StoryReturnDetailed(message="OK", stories=story_detailed)
 
 @app.get("/get/tag", response_model=List[dbmod.Tag])
 def get_tags(*, session: Session = Depends(get_session)):

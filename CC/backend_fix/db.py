@@ -1,4 +1,6 @@
-from sqlmodel import SQLModel, Session, create_engine
+from select import select
+from tabnanny import check
+from sqlmodel import SQLModel, Session, create_engine, select
 import dbmod
 import xlrd
 
@@ -9,7 +11,7 @@ connect_args = {"check_same_thread": False}
 engine = create_engine(sqlite_url, echo=True, connect_args=connect_args)
 
 #Jika ingin connect ke Cloud SQL, uncomment 2 baris dibawah
-#sqlite_url = "mysql+pymysql://hariyangcerah:hoshikara@34.101.221.48/mcr"
+#sqlite_url = "mysql+pymysql://hariyangcerah:hoshikara@34.101.221.48/qtdb"
 #engine = create_engine(sqlite_url, echo=True)
 
 loc = ("quotes.xlsx")
@@ -22,15 +24,18 @@ def create_db_and_tables():
     SQLModel.metadata.create_all(engine)
 
 def create_tags():
-    friends = dbmod.Tag(tag="friends")
-    family = dbmod.Tag(tag="family")
-    works = dbmod.Tag(tag="works")
-    school = dbmod.Tag(tag="school")
-    someone = dbmod.Tag(tag="someone gone")
-    lonely = dbmod.Tag(tag="lonely")
-    failure = dbmod.Tag(tag="failure")
-    hollow = dbmod.Tag(tag="hollow")
     with Session(engine) as session:
+        check = session.exec(select(dbmod.Tag)).first()
+        if check != None:
+            return
+        friends = dbmod.Tag(tag="friends")
+        family = dbmod.Tag(tag="family")
+        works = dbmod.Tag(tag="works")
+        school = dbmod.Tag(tag="school")
+        someone = dbmod.Tag(tag="someone gone")
+        lonely = dbmod.Tag(tag="lonely")
+        failure = dbmod.Tag(tag="failure")
+        hollow = dbmod.Tag(tag="hollow")
         session.add(friends)
         session.add(family)
         session.add(works)
@@ -53,6 +58,9 @@ def create_tags():
 
 def make_quotes():
     with Session(engine) as session:
+        check = session.exec(select(dbmod.Quote)).first()
+        if check != None:
+            return
         for i in range(sheet.nrows):
             q = sheet.cell_value(i, 0)
             c = sheet.cell_value(i, 1)
@@ -68,6 +76,9 @@ def make_quotes():
 
 def create_activities():
     with Session(engine) as session:
+        check = session.exec(select(dbmod.Activity)).first()
+        if check != None:
+            return
         acs = ['read books', 'hangout', 'meditate', 'sports', 'listen to music']
         for ac in acs:
             activ = dbmod.Activity(activity=ac)
