@@ -4,7 +4,7 @@
  A safe place to share your days both good and bad. Quotip is where you can be yourself. Make notes about how your day in detail and see what recommendations are given to you! Quotip will give you a gift in the form of useful quotes and activities adjusting to the story that you tell about your day.
 			
 
-## Collabolator
+## Collaborator
 ### Google Bangkit 2022 Capstone Project - Quotip (C22-PS016)
 - Christopher Tri Anugrah (C7320F2798) - Cloud Computing -  Universitas Surabaya
 - Nandaffa Rizky Putra (C2004F0360) - Cloud Computing - Institut Teknologi Sepuluh Nopember
@@ -22,7 +22,7 @@ For the websites, we only need the frontend files and install apache web server 
     - run `Sudo apt-get install apache`
     - run `Apache2 --version` (to check if apache web server was installed)
     - Copy the frontend files from https://github.com/tototheshadow/Quotip/CC/website to the apache place. Which is at "var/html/www/"
-    - Then your website is read to go.
+    - Then your website is ready to go.
 
 
 
@@ -44,7 +44,8 @@ Here are a few steps to get our system up and running in your local computer :
 2. **Initial Setup** :
     - Clone our project [Github Repo](https://github.com/tototheshadow/Quotip)
     - Navigate to CC/backend_fix
-    - Modify `db.py` to meet your requirements (Change database link, etc.) **yes we know, we know, we know, it is a VERY bad practice. this will be fixed soon**
+    - Modify `db.py` to meet your requirements (Change database link, etc.) 
+    **yes we know, we know, we know, it is a VERY bad practice. this will be fixed soon**
     - Create Python virtual environment on the folder by using `python3 -m venv env`, and activate the environment running `activate.bat` file on the env file (for Windows)
     - Install the requirements `pip install -r requirements.txt`
     - Run the server with uvicorn `python3 -m uvicorn main:app --reload` (This is enough if you’re just running the API on your local machine)
